@@ -133,6 +133,11 @@
       "matchDatasources": [
         "npm"
       ]
+    },
+    {
+      "depTypeList": ["action"],
+      "extractVersion": "^(?<version>v\\d+\\.\\d+\\.\\d+)$",
+      "versioning": "regex:^v(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
     }
   ],
   "ignoreDeps": ["@mdx-js/react", "react", "react-dom"]

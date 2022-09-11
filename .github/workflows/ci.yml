@@ -16,11 +16,16 @@ jobs:
     #  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
     steps:
+      # https://github.com/renovatebot/renovate/issues/7716
+      - name: Read Node.js version from package.json
+        run: echo ::set-output name=nodeVersion::$(node -p "require('./package.json').engines.node")
+        id: engines
+
       - uses: actions/checkout@v3
       - run: corepack enable
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ steps.engines.outputs.nodeVersion }}
           cache: "pnpm"
 
       - name: 📦 Install dependencies
