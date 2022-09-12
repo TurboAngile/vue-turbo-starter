@@ -185,6 +185,7 @@ importers:
       '@rushstack/eslint-patch': 1.1.4
       '@vue/eslint-config-prettier': 7.0.0
       eslint: 8.23.0
+      eslint-config-turbo: ^0.0.3
       eslint-define-config: 1.7.0
       eslint-plugin-import: 2.26.0
       eslint-plugin-promise: 6.0.1
@@ -196,6 +197,7 @@ importers:
       '@rushstack/eslint-patch': 1.1.4
       '@vue/eslint-config-prettier': 7.0.0_bxpuzolsxufkw2ipnoyzzxnyrm
       eslint: 8.23.0
+      eslint-config-turbo: 0.0.3_eslint@8.23.0
       eslint-define-config: 1.7.0
       eslint-plugin-import: 2.26.0_eslint@8.23.0
       eslint-plugin-promise: 6.0.1_eslint@8.23.0
@@ -9020,6 +9022,15 @@ packages:
       eslint-plugin-promise: 6.0.1_eslint@8.23.0
     dev: true
 
+  /eslint-config-turbo/0.0.3_eslint@8.23.0:
+    resolution: {integrity: sha512-hK5MlxDugUWZV9ZKcyfNwLXrlMuM2wPgAUk51cUFBC3nXRCVmCA9uSRFBZsyAIurN1wH7mS7G1NBo5F8VkF7lQ==}
+    peerDependencies:
+      eslint: ^7.23.0 || ^8.0.0
+    dependencies:
+      eslint: 8.23.0
+      eslint-plugin-turbo: 0.0.3_eslint@8.23.0
+    dev: true
+
   /eslint-define-config/1.7.0:
     resolution: {integrity: sha512-13zk8z8eKO4tpPMvAGV0sa6ok0XuMeu7Zhcizu2bLwcLy1fbNt7/h8PU1wbp9IoIgQETggZJozU0nPXUXOao2g==}
     engines: {node: '>= 14.6.0', npm: '>= 6.0.0', pnpm: '>= 7.0.0'}
@@ -9243,6 +9254,14 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
+    dependencies:
+      eslint: 8.23.0
+    dev: true
+
+  /eslint-plugin-turbo/0.0.3_eslint@8.23.0:
+    resolution: {integrity: sha512-QjidATGxWtaB9QUrD3NocUySmsgWKZlBMFlw4kX2IIjRLAxMPwukk90h3ZTaNXyRHuaQsrEgh7hhlCZoxP0TTw==}
+    peerDependencies:
+      eslint: ^7.23.0 || ^8.0.0
     dependencies:
       eslint: 8.23.0
     dev: true
