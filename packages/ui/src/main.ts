@@ -1,3 +1,8 @@
-import CustomButton from './components/button/Button.vue'
-import CustomInput from './components/CustomInput/CustomInput.vue'
-export { CustomButton, CustomInput }
+export { tailwindColors as colors } from './composables/colors-utils'
+export { default as version } from './version'
+export * from './components'
+export * from './composables'
+
+export { default as createUI } from './create'
+
+export { default } from './install'
