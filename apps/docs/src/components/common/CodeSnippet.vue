@@ -1,6 +1,10 @@
 <script lang="ts">
 import { setCDN, getHighlighter } from 'shiki'
+import { onMounted, ref } from 'vue'
 import theme from './Laughing-theme.json'
+</script>
+
+<script setup lang="ts">
 
 setCDN('/node_modules/shiki/')
 // setCDN('/')
@@ -34,10 +38,6 @@ const highlighter = getHighlighter({
   //   path: './languages/javascript.tmLanguage.json'
   // }]
 })
-</script>
-
-<script setup lang="ts">
-import { onMounted, ref } from 'vue'
 
 const props = defineProps({
   code: String,
@@ -60,8 +60,8 @@ onMounted(async () => {
 
 <template>
   <div class="relative">
-    <div v-html="highlighted"></div>
-    <copy-button v-if="showCopyButton" class="!absolute top-2 right-2" :text="code"/>
+    <div v-html="highlighted" />
+    <copy-button v-if="showCopyButton" class="!absolute top-2 right-2" :text="code" />
   </div>
 </template>
 

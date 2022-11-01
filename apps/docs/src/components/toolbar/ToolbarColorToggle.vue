@@ -1,24 +1,15 @@
-<template>
-  <x-button
-    ghost
-    class="-ml-2"
-    :icon-left="colorMode === 'light' ? 'sun' : 'moon'"
-    @click="toggle"
-  />
-</template>
-
 <script>
 export default {
-  data() {
+  data () {
     return {
       colorMode: 'light',
     }
   },
-  created() {
+  created () {
     try {
       const colorMode = localStorage.getItem('color-mode')
 
-      if (colorMode) this.colorMode = colorMode
+      if (colorMode) { this.colorMode = colorMode }
     } catch (e) {
       this.colorMode = 'light'
     }
@@ -26,7 +17,7 @@ export default {
     this.updateMode()
   },
   methods: {
-    toggle() {
+    toggle () {
       this.colorMode = (this.colorMode === 'light') ? 'dark' : 'light'
 
       this.updateMode()
@@ -37,7 +28,7 @@ export default {
         this.colorMode = 'light'
       }
     },
-    updateMode() {
+    updateMode () {
       this.colorMode === 'light'
         ? document.querySelector('html').classList.remove('dark')
         : document.querySelector('html').classList.add('dark')
@@ -45,3 +36,12 @@ export default {
   },
 }
 </script>
+
+<template>
+  <x-button
+    ghost
+    class="-ml-2"
+    :icon-left="colorMode === 'light' ? 'sun' : 'moon'"
+    @click="toggle"
+  />
+</template>

@@ -5,12 +5,16 @@ import { version } from '@ui/main'
 <template>
   <div class="bg-white dark:bg-secondary-700 px-4">
     <div class="flex justify-items-center items-center py-5">
-      <x-spacer/>
+      <x-spacer />
 
       <div class="flex items-center font-semibold text-sm">
-        <div class="tracking-wide text-xs">v{{ version }}</div>
-        <x-divider vertical style="height: 10px;" class="px-2"/>
-        <x-link href="https://github.com/laughing-team/ui" target="_blank" external>Github</x-link>
+        <div class="tracking-wide text-xs">
+          v{{ version }}
+        </div>
+        <x-divider vertical style="height: 10px;" class="px-2" />
+        <x-link href="https://github.com/laughing-team/ui" target="_blank" external>
+          Github
+        </x-link>
       </div>
     </div>
   </div>

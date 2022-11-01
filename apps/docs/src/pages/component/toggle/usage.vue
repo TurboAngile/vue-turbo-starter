@@ -1,3 +1,9 @@
+<script>
+export default {
+  data () { return { checked: true } },
+}
+</script>
+
 <template>
   <div class="grid grid-cols-4 gap-4">
     <x-toggle v-model="checked" color="primary" label="Primary" />
@@ -6,9 +12,3 @@
     <x-toggle v-model="checked" color="warning" label="Warning" />
   </div>
 </template>
-
-<script>
-export default {
-  data() { return { checked: true } },
-}
-</script>

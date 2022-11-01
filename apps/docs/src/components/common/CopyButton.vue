@@ -17,7 +17,7 @@ onUnmounted(() => {
   clearTimeout(timeout)
 })
 
-function copyText() {
+function copyText () {
   clearTimeout(timeout)
   animation.value = 'animate-ping'
   copy(props.text || '')
@@ -27,7 +27,7 @@ function copyText() {
   }, 1000)
 }
 
-function copy(text: string) {
+function copy (text: string) {
   const el = document.createElement('textarea')
 
   el.value = text

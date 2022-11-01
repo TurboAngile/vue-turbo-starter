@@ -1,6 +1,6 @@
 <script>
 export default {
-  setup() {
+  setup () {
     return {
       docsMenu: [
         { to: '/getting-started', label: 'Getting Started', icon: 'book' },
@@ -52,21 +52,27 @@ export default {
 
 <template>
   <div style="min-width: 240px;" class="pb-4">
-    <div class="title text-overline text-sm font-light ml-6 mt-6 mb-4">Documentation</div>
+    <div class="title text-overline text-sm font-light ml-6 mt-6 mb-4">
+      Documentation
+    </div>
     <x-menu
       :items="docsMenu"
       class="menu font-medium m-2"
       color="primary"
       filled
     />
-    <div class="title text-overline text-sm font-light ml-6 mt-8 mb-4">Form Components</div>
+    <div class="title text-overline text-sm font-light ml-6 mt-8 mb-4">
+      Form Components
+    </div>
     <x-menu
       :items="inputComponents"
       class="menu font-medium m-2"
       color="primary"
       filled
     />
-    <div class="title text-overline text-sm font-light ml-6 mt-8 mb-4">UI Components</div>
+    <div class="title text-overline text-sm font-light ml-6 mt-8 mb-4">
+      UI Components
+    </div>
     <x-menu
       :items="uiComponents"
       class="menu font-medium m-2"
