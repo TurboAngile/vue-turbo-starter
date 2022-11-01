@@ -16,7 +16,7 @@ export default {
         'py-3': props.size === 'lg',
         'py-4 text-lg': props.size === 'xl',
 
-        'rounded': props.rounded,
+        rounded: props.rounded,
       })
 
       return classes
@@ -27,12 +27,14 @@ export default {
     const color = colors.getPalette(props.color || 'gray')
     const gray = colors.getPalette('gray')
 
-    if (props.disabled) return css.variables({
-      text: gray[300],
-      dark: {
-        text: gray[600],
-      },
-    })
+    if (props.disabled) {
+      return css.variables({
+        text: gray[300],
+        dark: {
+          text: gray[600],
+        },
+      })
+    }
 
     if (props.filled) {
       if (data.isActive) {

@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XModal' }
 </script>
 
 <script setup lang="ts">
@@ -8,10 +7,10 @@ import { onClickOutside, useEventListener } from '@vueuse/core'
 import { useTheme } from '../../composables/theme'
 import { closeIcon } from '../../common/icons'
 
-import theme from './Modal.theme'
-
 import XScroll from '../../components/scroll/Scroll.vue'
 import XIcon from '../icon/Icon.vue'
+import theme from './Modal.theme'
+export default { name: 'XModal' }
 
 const props = defineProps({
   size: {
@@ -29,7 +28,7 @@ const value = ref(props.modelValue)
 const visible = ref(false)
 const modalRef = ref<HTMLElement | null>(null)
 
-let stopClickOutside: undefined | (()=> void) = undefined
+let stopClickOutside: undefined | (()=> void)
 
 watch(value, (val) => {
   if (stopClickOutside) {
@@ -60,13 +59,13 @@ watch(() => props.modelValue, (val) => {
   }
 })
 
-if (typeof window !== 'undefined') useEventListener(document, 'keydown', onKeyDown)
+if (typeof window !== 'undefined') { useEventListener(document, 'keydown', onKeyDown) }
 
-function onKeyDown(event: KeyboardEvent) {
-  if (event.key === 'Escape' && value.value) close()
+function onKeyDown (event: KeyboardEvent) {
+  if (event.key === 'Escape' && value.value) { close() }
 }
 
-function close() {
+function close () {
   visible.value = false
 
   setTimeout(() => {
@@ -75,7 +74,7 @@ function close() {
   }, 150)
 }
 
-function open() {
+function open () {
   value.value = true
   emit('update:modelValue', true)
 
@@ -106,7 +105,7 @@ defineExpose({ open, close })
           classes.backdrop,
           visible ? 'ease-out duration-200 opacity-30 dark:opacity-70' : 'ease-in duration-100 opacity-0',
         ]"
-      ></div>
+      />
 
       <div class="flex items-end sm:items-center justify-center p-4 sm:p-6 h-screen">
         <div
@@ -129,11 +128,11 @@ defineExpose({ open, close })
             ]"
             @click="close"
           >
-            <x-icon :icon="closeIcon"/>
+            <x-icon :icon="closeIcon" />
           </div>
-          <slot name="image"></slot>
+          <slot name="image" />
           <div v-if="$slots.header" :class="classes.header">
-            <slot name="header"></slot>
+            <slot name="header" />
           </div>
           <x-scroll
             v-if="$slots.default"
@@ -141,11 +140,11 @@ defineExpose({ open, close })
             vertical
           >
             <div :class="classes.content">
-              <slot></slot>
+              <slot />
             </div>
           </x-scroll>
           <div v-if="$slots.actions" :class="classes.actions">
-            <slot name="actions"></slot>
+            <slot name="actions" />
           </div>
         </div>
       </div>

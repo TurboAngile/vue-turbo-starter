@@ -16,7 +16,7 @@ export const useInputtable = (props: any, { focus, emit, withListeners = true }:
   const nameInternal = ref(name)
 
   watch(() => props.error, (val) => { errorInternal.value = val })
-  watch(() => props.name, (val) => { if (val) nameInternal.value = val })
+  watch(() => props.name, (val) => { if (val) { nameInternal.value = val } })
 
   const form = inject(injectFormKey, {
     registerInput: (inputName: string, methods: XFormInputMethods) => {},
@@ -74,17 +74,19 @@ export const useInputtable = (props: any, { focus, emit, withListeners = true }:
     return true
   }
 
-  const inputListeners = withListeners ? computed(() => {
-    return {
-      blur: (event: Event) => emit('blur', event),
-      focus: (event: Event) => emit('focus', event),
-      input: (event: Event) => {
-        if (props.validateOnInput && !isFirstValidation.value) validate((event.target as HTMLInputElement).value)
-        emit('update:modelValue', (event.target as HTMLInputElement).value)
-      },
-      change: (event: Event) => emit('change', event),
-    }
-  }) : {}
+  const inputListeners = withListeners
+    ? computed(() => {
+      return {
+        blur: (event: Event) => emit('blur', event),
+        focus: (event: Event) => emit('focus', event),
+        input: (event: Event) => {
+          if (props.validateOnInput && !isFirstValidation.value) { validate((event.target as HTMLInputElement).value) }
+          emit('update:modelValue', (event.target as HTMLInputElement).value)
+        },
+        change: (event: Event) => emit('change', event),
+      }
+    })
+    : {}
 
   onMounted(() => {
     form.registerInput(nameInternal.value, focus, validate, setError)
@@ -106,9 +108,9 @@ export const useInputtable = (props: any, { focus, emit, withListeners = true }:
 }
 
 useInputtable.emits = (withListeners = true): string[] => {
-  return withListeners ?
-    ['update:modelValue', 'blur', 'focus', 'input', 'change'] :
-    ['update:modelValue']
+  return withListeners
+    ? ['update:modelValue', 'blur', 'focus', 'input', 'change']
+    : ['update:modelValue']
 }
 
 useInputtable.props = () => ({

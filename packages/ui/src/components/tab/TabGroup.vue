@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XTabGroup' }
 </script>
 
 <script setup lang="ts">
@@ -13,6 +12,7 @@ import { useTheme } from '../../composables/theme'
 import XScroll from '../../components/scroll/Scroll.vue'
 
 import theme from './TabGroup.theme'
+export default { name: 'XTabGroup' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -55,7 +55,7 @@ const state = reactive({
   color: computed(() => props.color),
 })
 
-function activateTab(tab: string | number) {
+function activateTab (tab: string | number) {
   active.value = tab
   emit('update:modelValue', tab)
 }
@@ -67,21 +67,21 @@ provide(injectTabKey, {
 })
 
 const updateTracker = useThrottleFn((value: string | number | undefined) => {
-  if (typeof value === 'undefined') return
+  if (typeof value === 'undefined') { return }
 
   const tabEl = tabsRef.value?.querySelector(`[data-value="${value}"]`) as HTMLElement
 
-  if (!tabEl || !trackerRef.value) return
+  if (!tabEl || !trackerRef.value) { return }
 
   trackerRef.value.style.left = `${tabEl.offsetLeft}px`
   trackerRef.value.style.width = `${tabEl.offsetWidth}px`
 
-  if (!tabsRef.value || !scrollRef.value) return
+  if (!tabsRef.value || !scrollRef.value) { return }
 
   // scrollIntoView only updates one at a time
   const center = tabEl.offsetLeft - (tabsRef.value.getBoundingClientRect().width - tabEl.getBoundingClientRect().width) / 2
 
-  if (scrollRef.value.scrollEl) scrollRef.value.scrollEl.scrollTo({ left: center, behavior: 'smooth' })
+  if (scrollRef.value.scrollEl) { scrollRef.value.scrollEl.scrollTo({ left: center, behavior: 'smooth' }) }
 }, 100)
 
 useResizeObserver(wrapperRef, () => { updateTracker(active.value) })
@@ -123,14 +123,14 @@ const { styles, classes, className } = useTheme('tabs', theme, props)
           class="relative"
           :class="classes.list"
         >
-          <slot></slot>
+          <slot />
         </ul>
         <div
           ref="trackerRef"
           :class="classes.tracker"
-        ></div>
+        />
       </x-scroll>
     </div>
-    <div ref="tabsContentRef"></div>
+    <div ref="tabsContentRef" />
   </div>
 </template>

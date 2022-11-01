@@ -17,9 +17,11 @@ export default {
       bg: color[500],
     }))
 
-    if (props.gradient) vars.push({
-      '--tw-gradient-stops': `${color[100]}, ${color[800]}`,
-    })
+    if (props.gradient) {
+      vars.push({
+        '--tw-gradient-stops': `${color[100]}, ${color[800]}`,
+      })
+    }
 
     return vars
   },

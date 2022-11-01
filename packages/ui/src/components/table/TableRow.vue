@@ -1,13 +1,13 @@
 <script lang="ts">
-const validators = {
-  verticalAlign: ['baseline','bottom','middle','text-bottom','text-top','top'],
-}
-
-export default { name: 'XTableRow', validators }
 </script>
 
 <script setup lang="ts">
 import { computed, type PropType } from 'vue'
+const validators = {
+  verticalAlign: ['baseline', 'bottom', 'middle', 'text-bottom', 'text-top', 'top'],
+}
+
+export default { name: 'XTableRow', validators }
 
 const props = defineProps({
   pointer: Boolean,
@@ -20,12 +20,7 @@ const props = defineProps({
 })
 
 const alignClass = computed(() => {
-  if (props.verticalAlign === 'baseline') return 'align-baseline'
-  else if (props.verticalAlign === 'bottom') return 'align-bottom'
-  else if (props.verticalAlign === 'middle') return 'align-middle'
-  else if (props.verticalAlign === 'text-bottom') return 'align-text-bottom'
-  else if (props.verticalAlign === 'text-top') return 'align-text-top'
-  else if (props.verticalAlign === 'top') return 'align-top'
+  if (props.verticalAlign === 'baseline') { return 'align-baseline' } else if (props.verticalAlign === 'bottom') { return 'align-bottom' } else if (props.verticalAlign === 'middle') { return 'align-middle' } else if (props.verticalAlign === 'text-bottom') { return 'align-text-bottom' } else if (props.verticalAlign === 'text-top') { return 'align-text-top' } else if (props.verticalAlign === 'top') { return 'align-top' }
 
   return ''
 })
@@ -41,6 +36,6 @@ const alignClass = computed(() => {
       alignClass
     ]"
   >
-    <slot></slot>
+    <slot />
   </tr>
 </template>

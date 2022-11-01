@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XButtonGroup' }
 </script>
 
 <script setup lang="ts">
@@ -11,6 +10,7 @@ import { useInteractive } from '../../composables/interactive'
 import { injectButtonGroupKey } from '../../composables/keys'
 
 import theme from './ButtonGroup.theme'
+export default { name: 'XButtonGroup' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -45,7 +45,7 @@ const { className, classes, styles } = useTheme('button-group', theme, props)
       classes.wrapper
     ]"
   >
-    <slot></slot>
+    <slot />
   </component>
 </template>
 

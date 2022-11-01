@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XTextarea' }
 </script>
 
 <script setup lang="ts">
@@ -15,6 +14,7 @@ import { useInteractive } from '../../composables/interactive'
 import XInputError from '../helpers/InputError'
 
 import theme from './Textarea.theme'
+export default { name: 'XTextarea' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -63,18 +63,16 @@ const colors = useColors()
 const color = colors.getPalette('primary')
 const style = css.get('border', color[400])
 
-function onInput() {
+function onInput () {
   resize()
 }
 
-function onEnter(e: KeyboardEvent) {
-  if (props.preventEnter) e.preventDefault()
+function onEnter (e: KeyboardEvent) {
+  if (props.preventEnter) { e.preventDefault() }
   e.stopPropagation()
-
-  return
 }
 
-function resize() {
+function resize () {
   if (props.adjustToText && elRef.value) {
     elRef.value.style.height = '1px'
     elRef.value.style.height = (2 + elRef.value.scrollHeight) + 'px'
@@ -111,7 +109,7 @@ defineExpose({ focus, blur, reset, validate, setError })
       v-if="label"
       :class="classes.label"
       v-text="label"
-    ></p>
+    />
 
     <textarea
       ref="elRef"
@@ -137,8 +135,8 @@ defineExpose({ focus, blur, reset, validate, setError })
       v-on="inputListeners"
       @keydown.enter="onEnter"
       @input="onInput"
-    ></textarea>
+    />
 
-    <x-input-error :error="errorInternal" :helper="helper"/>
+    <x-input-error :error="errorInternal" :helper="helper" />
   </label>
 </template>

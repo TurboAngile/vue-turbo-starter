@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XBreadcrumbs' }
 </script>
 
 <script setup lang="ts">
@@ -12,6 +11,7 @@ import XIcon from '../../components/icon/Icon.vue'
 import XLink from '../../components/link/Link.vue'
 
 import theme from './Breadcrumbs.theme'
+export default { name: 'XBreadcrumbs' }
 
 export type BreadcrumbItem = {
   label: string,
@@ -56,13 +56,13 @@ const { styles, classes, className } = useTheme('breadcrumbs', theme, props)
           :underline="item.underline|| underline"
           class="flex items-center"
         >
-          <x-icon v-if="item.icon" :icon="item.icon" class="mr-1.5"/>
+          <x-icon v-if="item.icon" :icon="item.icon" class="mr-1.5" />
           {{ item.label }}
         </x-link>
         <x-icon :icon="icon" class="text-gray-400 mx-1.5" size="sm" />
       </li>
       <li v-if="lastItem" :class="classes.lastItem">
-        <x-icon v-if="lastItem.icon" :icon="lastItem.icon" class="mr-1"/>
+        <x-icon v-if="lastItem.icon" :icon="lastItem.icon" class="mr-1" />
         {{ lastItem.label }}
       </li>
     </ul>

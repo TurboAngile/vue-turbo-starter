@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XAlert' }
 </script>
 
 <script setup lang="ts">
@@ -11,6 +10,7 @@ import { closeIcon, successIcon, errorIcon, warningIcon, infoIcon } from '../../
 import XIcon from '../icon/Icon.vue'
 
 import theme from './Alert.theme'
+export default { name: 'XAlert' }
 
 const props = defineProps({
   ...useColors.props(),
@@ -24,10 +24,7 @@ const props = defineProps({
 defineEmits(['remove'])
 
 const icon = computed(() => {
-  if (props.type === 'info') return infoIcon
-  else if (props.type === 'success') return successIcon
-  else if (props.type === 'error') return errorIcon
-  else if (props.type === 'warning') return warningIcon
+  if (props.type === 'info') { return infoIcon } else if (props.type === 'success') { return successIcon } else if (props.type === 'error') { return errorIcon } else if (props.type === 'warning') { return warningIcon }
 
   return ''
 })
@@ -54,14 +51,14 @@ const { styles, classes, className } = useTheme('alert', theme, props)
     </slot>
 
     <div>
-      <slot></slot>
+      <slot />
     </div>
 
     <template v-if="removable">
-      <div class="flex-grow"></div>
+      <div class="flex-grow" />
       <span class="flex items-center cursor-pointer shrink-0" @click="(e) => $emit('remove', e)">
         <slot name="removeIcon">
-          <x-icon :icon="closeIcon"/>
+          <x-icon :icon="closeIcon" />
         </slot>
       </span>
     </template>

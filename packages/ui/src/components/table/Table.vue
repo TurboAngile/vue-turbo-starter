@@ -1,19 +1,19 @@
 <script lang="ts">
-export default { name: 'XTable' }
 </script>
 
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { useTheme } from '../../composables/theme'
 
+import XSpinner from '../spinner/Spinner.vue'
 import XTableHead from './TableHead'
 import XTableHeader, { type Sort, type Align } from './TableHeader.vue'
 import XTableBody from './TableBody'
 import XTableRow from './TableRow.vue'
 import XTableCell from './TableCell.vue'
-import XSpinner from '../spinner/Spinner.vue'
 
 import theme from './Table.theme'
+export default { name: 'XTable' }
 
 export type Header = {
   sortable?: boolean
@@ -54,22 +54,21 @@ const props = defineProps({
 
 const emit = defineEmits(['update:sort', 'click-row'])
 
-function getSort(headerValue: string | undefined, sort: string[]): Sort {
-  if (!headerValue) return undefined
+function getSort (headerValue: string | undefined, sort: string[]): Sort {
+  if (!headerValue) { return undefined }
 
   for (let i = 0; i < sort.length; i++) {
     const { 0: value, 1: order } = sort[i].split(',')
 
     if (headerValue === value) {
-      if (parseInt(order) > 0) return 1
-      else return -1
+      if (parseInt(order) > 0) { return 1 } else { return -1 }
     }
   }
 
   return undefined
 }
 
-function sortHeader(header: Header) {
+function sortHeader (header: Header) {
   // update sort array
   const sort = props.sort.slice(0)
   let exists = false
@@ -92,13 +91,13 @@ function sortHeader(header: Header) {
     }
   }
 
-  if (!exists) sort.push(`${header.value},-1`)
+  if (!exists) { sort.push(`${header.value},-1`) }
 
   emit('update:sort', sort)
 }
 
-function getValue(item: any, path: string | string[] | undefined) {
-  if (!path) return ''
+function getValue (item: any, path: string | string[] | undefined) {
+  if (!path) { return '' }
   const pathArray = Array.isArray(path) ? path : path.match(/([^[.\]])+/g)
   const result = pathArray?.reduce((prevObj: any, key: string) => prevObj && prevObj[key], item)
 
@@ -156,7 +155,7 @@ const { styles, classes, className } = useTheme('table', theme, props)
         v-if="loading"
         :class="classes.loadingWrapper"
       >
-        <x-spinner size="lg"/>
+        <x-spinner size="lg" />
       </div>
     </table>
   </div>

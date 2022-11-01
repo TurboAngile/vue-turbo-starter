@@ -1,12 +1,5 @@
 <script lang="ts">
 import { useCommon } from '../../composables/common'
-
-export default {
-  name: 'XPaginationItem',
-  validators: {
-    ...useCommon.validators(),
-  },
-}
 </script>
 
 <script setup lang="ts">
@@ -15,6 +8,13 @@ import { useTheme } from '../../composables/theme'
 import XButton from '../button/Button.vue'
 
 import theme from './PaginationItem.theme'
+
+export default {
+  name: 'XPaginationItem',
+  validators: {
+    ...useCommon.validators(),
+  },
+}
 
 const props = defineProps({
   ...useCommon.props(),

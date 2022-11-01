@@ -22,13 +22,14 @@ const create = (createOptions: LaughingUIOptions = {}) => {
       ...installOptions,
     }
 
-    if (options.components)
+    if (options.components) {
       options.components.forEach((component: any) => {
-        // TODO: remove me
+      // TODO: remove me
         const name = component.name.startsWith('X') ? component.name.slice(1) : component.name
 
         app.component(`${options.prefix}${name}`, component)
       })
+    }
 
     app.provide(injectColorsKey, options.colors)
     app.provide(injectIconsKey, options.icons || {})

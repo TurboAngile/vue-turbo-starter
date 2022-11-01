@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XSlider' }
 </script>
 
 <script setup lang="ts">
@@ -14,6 +13,7 @@ import { useTheme } from '../../composables/theme'
 import XProgress from '../../components/progress/Progress.vue'
 
 import theme from './Slider.theme'
+export default { name: 'XSlider' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -50,17 +50,17 @@ watch(value, (val) => {
 const initial = ref()
 const isDragging = computed(() => !!initial.value)
 
-function startProgressDrag(e: PointerEvent) {
+function startProgressDrag (e: PointerEvent) {
   e.stopPropagation()
-  if (!dragRef.value || !progressRef.value) return
+  if (!dragRef.value || !progressRef.value) { return }
 
   focus()
 
   const maxWidth = progressRef.value.offsetWidth
   let percent = Math.floor(e.offsetX * 100 / maxWidth)
 
-  if (percent < 0) percent = 0
-  if (percent > 100) percent = 100
+  if (percent < 0) { percent = 0 }
+  if (percent > 100) { percent = 100 }
 
   value.value = percent
 
@@ -76,8 +76,8 @@ function startProgressDrag(e: PointerEvent) {
   e.stopPropagation()
 }
 
-function startDrag(e: PointerEvent) {
-  if (!dragRef.value || !progressRef.value) return
+function startDrag (e: PointerEvent) {
+  if (!dragRef.value || !progressRef.value) { return }
 
   focus()
 
@@ -92,19 +92,19 @@ function startDrag(e: PointerEvent) {
   e.stopPropagation()
 }
 
-function moveDrag(e: PointerEvent) {
-  if (!initial.value || !dragRef.value) return
+function moveDrag (e: PointerEvent) {
+  if (!initial.value || !dragRef.value) { return }
 
   const { x, maxWidth, offsetX } = initial.value
   const movedX = e.x - x
 
-  if (movedX === 0) return
+  if (movedX === 0) { return }
 
   const newMoveX = offsetX + movedX
   let percent = Math.floor(newMoveX * 100 / maxWidth)
 
-  if (percent < 0) percent = 0
-  if (percent > 100) percent = 100
+  if (percent < 0) { percent = 0 }
+  if (percent > 100) { percent = 100 }
 
   value.value = percent
 
@@ -112,8 +112,8 @@ function moveDrag(e: PointerEvent) {
   e.stopPropagation()
 }
 
-function endDrag(e: PointerEvent) {
-  if (!initial.value) return
+function endDrag (e: PointerEvent) {
+  if (!initial.value) { return }
   initial.value = undefined
   e.preventDefault()
   e.stopPropagation()
@@ -128,17 +128,17 @@ if (typeof window !== 'undefined') {
 
 useEventListener(elRef, 'keydown', handleKeydown)
 
-function handleKeydown(e: KeyboardEvent) {
+function handleKeydown (e: KeyboardEvent) {
   if (e.code === 'ArrowLeft') {
     const nextValue = value.value - 1
 
-    if (nextValue >= 0) value.value = nextValue
+    if (nextValue >= 0) { value.value = nextValue }
 
     e.preventDefault()
   } else if (e.code === 'ArrowRight') {
     const nextValue = value.value + 1
 
-    if (nextValue <= 100) value.value = nextValue
+    if (nextValue <= 100) { value.value = nextValue }
 
     e.preventDefault()
   }
@@ -173,10 +173,10 @@ defineExpose({ focus, blur, reset, validate, setError })
       v-if="label"
       :class="classes.label"
       v-text="label"
-    ></p>
+    />
 
-    <div class="flex items-center relative w-full" >
-      <slot name="prefix" :value="value"></slot>
+    <div class="flex items-center relative w-full">
+      <slot name="prefix" :value="value" />
       <div
         ref="progressRef"
         :class="[isDragging ? 'cursor-grabbing' : 'cursor-grab']"
@@ -199,11 +199,11 @@ defineExpose({ focus, blur, reset, validate, setError })
             isDragging ? 'cursor-grabbing' : 'cursor-grab'
           ]"
           :style="`left: ${value}%;`"
-        ></div>
+        />
       </div>
-      <slot name="suffix" :value="value"></slot>
+      <slot name="suffix" :value="value" />
     </div>
 
-    <p v-if="errorInternal" class="text-sm text-red-500 mt-1" v-text="errorInternal"></p>
+    <p v-if="errorInternal" class="text-sm text-red-500 mt-1" v-text="errorInternal" />
   </label>
 </template>

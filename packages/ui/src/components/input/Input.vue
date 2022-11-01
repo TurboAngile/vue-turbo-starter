@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XInput' }
 </script>
 
 <script setup lang="ts">
@@ -15,6 +14,7 @@ import XIcon from '../icon/Icon.vue'
 import XInputError from '../helpers/InputError'
 
 import theme from './Input.theme'
+export default { name: 'XInput' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -51,8 +51,8 @@ const emit = defineEmits(useInputtable.emits())
 const elRef = ref<HTMLInputElement | null>(null)
 const currentType = ref(props.type)
 
-function onChange(e: Event) {
-  if (!e.target) return
+function onChange (e: Event) {
+  if (!e.target) { return }
 
   const target = (e.target as HTMLInputElement)
 
@@ -60,16 +60,16 @@ function onChange(e: Event) {
     const value = Number(target.value)
 
     if (typeof props.min !== 'undefined') {
-      if (value < props.min) target.value = props.min.toString()
+      if (value < props.min) { target.value = props.min.toString() }
     }
 
     if (typeof props.max !== 'undefined') {
-      if (value > props.max) target.value = props.max.toString()
+      if (value > props.max) { target.value = props.max.toString() }
     }
   }
 }
 
-function togglePasswordVisibility() {
+function togglePasswordVisibility () {
   currentType.value = currentType.value === 'password' ? 'text' : 'password'
 }
 
@@ -103,7 +103,7 @@ defineExpose({ focus, blur, reset, validate, setError })
       v-if="label"
       :class="classes.label"
       v-text="label"
-    ></p>
+    />
 
     <div class="relative">
       <x-icon
@@ -142,7 +142,7 @@ defineExpose({ focus, blur, reset, validate, setError })
         v-bind="$attrs"
         v-on="inputListeners"
         @change="onChange"
-      />
+      >
 
       <x-icon
         v-if="iconRight"
@@ -162,6 +162,6 @@ defineExpose({ focus, blur, reset, validate, setError })
       />
     </div>
 
-    <x-input-error :error="errorInternal" :helper="helper"/>
+    <x-input-error :error="errorInternal" :helper="helper" />
   </label>
 </template>

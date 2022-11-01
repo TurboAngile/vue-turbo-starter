@@ -7,9 +7,7 @@ export default {
     box: ({ props }: ThemeParams) => {
       const classes = ['rounded flex justify-center items-center shrink-0 border-2 border-[color:var(--x-checkbox-border)] bg-[color:var(--x-checkbox-bg)] dark:border-[color:var(--x-checkbox-dark-border)] dark:bg-[color:var(--x-checkbox-dark-bg)]']
 
-      if (props.size === 'xs' || props.size === 'sm') classes.push('h-4 w-4')
-      else if (props.size === 'xl') classes.push('h-6 w-6')
-      else classes.push('h-5 w-5')
+      if (props.size === 'xs' || props.size === 'sm') { classes.push('h-4 w-4') } else if (props.size === 'xl') { classes.push('h-6 w-6') } else { classes.push('h-5 w-5') }
 
       return classes
     },
@@ -17,9 +15,7 @@ export default {
     icon: ({ props }: ThemeParams) => {
       const classes = ['fill-current text-white dark:text-gray-900']
 
-      if (props.size === 'xs' || props.size === 'sm') classes.push('h-2 w-2')
-      else if (props.size === 'xl') classes.push('h-4 w-4')
-      else classes.push('h-3 w-3')
+      if (props.size === 'xs' || props.size === 'sm') { classes.push('h-2 w-2') } else if (props.size === 'xl') { classes.push('h-4 w-4') } else { classes.push('h-3 w-3') }
 
       return classes
     },
@@ -27,16 +23,13 @@ export default {
     label: ({ props }: ThemeParams) => {
       const classes = ['inline-block font-medium text-gray-800 dark:text-gray-200 pl-2']
 
-      if (props.size === 'xs') classes.push('text-xs')
-      else if (props.size === 'sm') classes.push('text-sm')
-      else if (props.size === 'lg') classes.push('text-lg')
-      else if (props.size === 'xl') classes.push('text-xl')
+      if (props.size === 'xs') { classes.push('text-xs') } else if (props.size === 'sm') { classes.push('text-sm') } else if (props.size === 'lg') { classes.push('text-lg') } else if (props.size === 'xl') { classes.push('text-xl') }
 
       return classes
     },
   },
 
-  styles({ props, colors, css, data }: ThemeParams) {
+  styles ({ props, colors, css, data }: ThemeParams) {
     const gray = colors.getPalette('gray')
     const color = colors.getPalette(props.color)
     const vars: (object | string)[] = []

@@ -1,8 +1,4 @@
 <script lang="ts">
-export default {
-  name: 'XDrawer',
-  inheritAttrs: false,
-}
 </script>
 
 <script setup lang="ts">
@@ -13,6 +9,10 @@ import { useTheme } from '../../composables/theme'
 import XScroll from '../../components/scroll/Scroll.vue'
 
 import theme from './Drawer.theme'
+export default {
+  name: 'XDrawer',
+  inheritAttrs: false,
+}
 
 const props = defineProps({
   modelValue: Boolean,
@@ -48,7 +48,7 @@ const drawerRef = ref<HTMLElement | null>(null)
 
 let deferShow = ref<boolean>(false)
 
-if (typeof window !== 'undefined') deferShow = ref<boolean>(!!(props.teleportTo && (props.teleportTo instanceof HTMLElement || document.querySelector(props.teleportTo))))
+if (typeof window !== 'undefined') { deferShow = ref<boolean>(!!(props.teleportTo && (props.teleportTo instanceof HTMLElement || document.querySelector(props.teleportTo)))) }
 
 const isTailwindBreakpoint = typeof props.breakpoint === 'string'
 const breakpoints = useBreakpoints(isTailwindBreakpoint ? breakpointsTailwind : { md: props.breakpoint || 768 } as Breakpoints)
@@ -72,10 +72,10 @@ watch(() => props.modelValue, (val) => {
   value.value = val
 })
 
-if (typeof window !== 'undefined') useEventListener(document, 'keydown', onKeyDown)
+if (typeof window !== 'undefined') { useEventListener(document, 'keydown', onKeyDown) }
 
-function onKeyDown(event: KeyboardEvent) {
-  if (event.key === 'Escape' && value.value) close()
+function onKeyDown (event: KeyboardEvent) {
+  if (event.key === 'Escape' && value.value) { close() }
 }
 
 const { lengthX, lengthY } = useSwipe(drawerRef, {
@@ -95,14 +95,14 @@ const { lengthX, lengthY } = useSwipe(drawerRef, {
   //     left.value = '0'
   //   }
   // },
-  onSwipeEnd(e: TouchEvent, direction: SwipeDirection) {
+  onSwipeEnd (e: TouchEvent, direction: SwipeDirection) {
     if (detached.value) {
       if (
         (props.position === 'left' && direction === 'LEFT') ||
             (props.position === 'right' && direction === 'RIGHT') ||
             (props.position === 'top' && direction === 'UP') ||
             (props.position === 'bottom' && direction === 'DOWN')
-      ) close()
+      ) { close() }
     }
   },
 })
@@ -110,8 +110,7 @@ const { lengthX, lengthY } = useSwipe(drawerRef, {
 const autoStyles = computed(() => {
   const s: Record<string, string> = {}
 
-  if (props.position === 'left' || props.position === 'right') s['width'] = props.width + 'px'
-  else if (props.position === 'top' || props.position === 'bottom') s['height'] = props.height + 'px'
+  if (props.position === 'left' || props.position === 'right') { s.width = props.width + 'px' } else if (props.position === 'top' || props.position === 'bottom') { s.height = props.height + 'px' }
 
   return s
 })
@@ -122,23 +121,17 @@ const autoClasses = computed(() => {
   if (detached.value) {
     c.push('absolute shadow-lg')
 
-    if (props.position === 'top') c.push('top-0 inset-x-0')
-    else if (props.position === 'bottom') c.push('bottom-0 inset-x-0')
-    else if (props.position === 'left') c.push('left-0 inset-y-0')
-    else if (props.position === 'right') c.push('right-0 inset-y-0')
+    if (props.position === 'top') { c.push('top-0 inset-x-0') } else if (props.position === 'bottom') { c.push('bottom-0 inset-x-0') } else if (props.position === 'left') { c.push('left-0 inset-y-0') } else if (props.position === 'right') { c.push('right-0 inset-y-0') }
   }
 
   return c
 })
 
-function onBeforeEnter(el: HTMLElement) {
-  if (props.position === 'top') el.style.top = `-${props.height}px`
-  else if (props.position === 'bottom') el.style.bottom = `-${props.height}px`
-  else if (props.position === 'left') el.style.left = `-${props.width}px`
-  else if (props.position === 'right') el.style.right = `-${props.width}px`
+function onBeforeEnter (el: HTMLElement) {
+  if (props.position === 'top') { el.style.top = `-${props.height}px` } else if (props.position === 'bottom') { el.style.bottom = `-${props.height}px` } else if (props.position === 'left') { el.style.left = `-${props.width}px` } else if (props.position === 'right') { el.style.right = `-${props.width}px` }
 }
 
-function onEnter(el: HTMLElement, done: ()=> void) {
+function onEnter (el: HTMLElement, done: ()=> void) {
   if (!detached.value) {
     done()
 
@@ -146,34 +139,28 @@ function onEnter(el: HTMLElement, done: ()=> void) {
   }
   el.addEventListener('transitionend', done)
   setTimeout(() => {
-    if (props.backdrop) el.classList.add('bg-gray-500/30')
-    if (props.position === 'top') el.style.top = '0'
-    else if (props.position === 'bottom') el.style.bottom = '0'
-    else if (props.position === 'left') el.style.left = '0'
-    else if (props.position === 'right') el.style.right = '0'
+    if (props.backdrop) { el.classList.add('bg-gray-500/30') }
+    if (props.position === 'top') { el.style.top = '0' } else if (props.position === 'bottom') { el.style.bottom = '0' } else if (props.position === 'left') { el.style.left = '0' } else if (props.position === 'right') { el.style.right = '0' }
   }, 1)
 }
 
-function onBeforeLeave(el: HTMLElement) {}
+function onBeforeLeave (el: HTMLElement) {}
 
-function onLeave(el: HTMLElement, done: ()=> void) {
+function onLeave (el: HTMLElement, done: ()=> void) {
   el.addEventListener('transitionend', done)
   setTimeout(() => {
-    if (props.backdrop) el.classList.remove('bg-gray-500/30')
-    if (props.position === 'top') el.style.top = `-${props.height}px`
-    else if (props.position === 'bottom') el.style.bottom = `-${props.height}px`
-    else if (props.position === 'left') el.style.left = `-${props.width}px`
-    else if (props.position === 'right') el.style.right = `-${props.width}px`
+    if (props.backdrop) { el.classList.remove('bg-gray-500/30') }
+    if (props.position === 'top') { el.style.top = `-${props.height}px` } else if (props.position === 'bottom') { el.style.bottom = `-${props.height}px` } else if (props.position === 'left') { el.style.left = `-${props.width}px` } else if (props.position === 'right') { el.style.right = `-${props.width}px` }
   }, 1)
 }
 
-function close(e?: PointerEvent) {
-  if (e && e.target !== backdropRef.value) return
+function close (e?: PointerEvent) {
+  if (e && e.target !== backdropRef.value) { return }
   value.value = false
   emit('update:modelValue', false)
 }
 
-function open() {
+function open () {
   value.value = true
   emit('update:modelValue', true)
 }
@@ -208,7 +195,7 @@ defineExpose({ open, close })
           v-if="detached && value"
           ref="swipeRef"
           class="flex flex-col max-h-full"
-        ></div>
+        />
         <div
           ref="drawerRef"
           :class="[
@@ -218,15 +205,15 @@ defineExpose({ open, close })
           ]"
           :style="[autoStyles, styles]"
         >
-          <slot name="header"></slot>
+          <slot name="header" />
           <x-scroll
             :scrollbar="false"
             vertical
             class="flex-1"
           >
-            <slot></slot>
+            <slot />
           </x-scroll>
-          <slot name="footer"></slot>
+          <slot name="footer" />
         </div>
       </div>
     </transition>

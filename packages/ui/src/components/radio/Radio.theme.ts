@@ -7,9 +7,8 @@ export default {
     circle: ({ props }: ThemeParams) => {
       let c = 'rounded-full flex justify-center items-center shrink-0 border-2 outline-offset-2 outline-slate-300 dark:outline-slate-500 group-focus:outline-1 group-focus:outline'
 
-      if (props.size === 'xs' || props.size === 'sm') c += ' h-4 w-4'
-      if (props.size === 'xl') c += ' h-6 w-6'
-      else c += ' h-5 w-5'
+      if (props.size === 'xs' || props.size === 'sm') { c += ' h-4 w-4' }
+      if (props.size === 'xl') { c += ' h-6 w-6' } else { c += ' h-5 w-5' }
 
       return c
     },
@@ -17,12 +16,9 @@ export default {
     circleIcon: ({ props, data }: ThemeParams) => {
       const c = []
 
-      if (!data.selected) c.push('opacity-0')
+      if (!data.selected) { c.push('opacity-0') }
 
-      if (props.size === 'sm' || props.size === 'xs') c.push('h-2')
-      else if (props.size === 'lg') c.push('h-2.5')
-      else if (props.size === 'xl') c.push('h-3')
-      else c.push('h-[0.6rem]')
+      if (props.size === 'sm' || props.size === 'xs') { c.push('h-2') } else if (props.size === 'lg') { c.push('h-2.5') } else if (props.size === 'xl') { c.push('h-3') } else { c.push('h-[0.6rem]') }
 
       return c
     },
@@ -30,10 +26,7 @@ export default {
     label: ({ props, data }: ThemeParams) => {
       let c = 'font-medium text-gray-800 dark:text-gray-200 pl-2'
 
-      if (props.size === 'xs') c += ' text-xs'
-      else if (props.size === 'sm') c += ' text-sm'
-      else if (props.size === 'lg') c += ' text-lg'
-      else if (props.size === 'xl') c += ' text-xl'
+      if (props.size === 'xs') { c += ' text-xs' } else if (props.size === 'sm') { c += ' text-sm' } else if (props.size === 'lg') { c += ' text-lg' } else if (props.size === 'xl') { c += ' text-xl' }
 
       return c
     },
@@ -41,10 +34,7 @@ export default {
     content: ({ props }: ThemeParams) => {
       let c = 'pl-2'
 
-      if (props.size === 'xs') c += ' text-xs'
-      else if (props.size === 'sm') c += ' text-sm'
-      else if (props.size === 'lg') c += ' text-lg'
-      else if (props.size === 'xl') c += ' text-xl'
+      if (props.size === 'xs') { c += ' text-xs' } else if (props.size === 'sm') { c += ' text-sm' } else if (props.size === 'lg') { c += ' text-lg' } else if (props.size === 'xl') { c += ' text-xl' }
 
       return c
     },

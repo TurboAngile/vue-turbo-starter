@@ -7,10 +7,7 @@ export default {
     label: ({ props }: ThemeParams) => {
       let c = 'font-medium text-gray-800 dark:text-gray-200 mb-1'
 
-      if (props.size === 'xs') c += ' text-xs'
-      else if (props.size === 'sm') c += ' text-sm'
-      else if (props.size === 'lg') c += ' text-lg'
-      else if (props.size === 'xl') c += ' text-xl'
+      if (props.size === 'xs') { c += ' text-xs' } else if (props.size === 'sm') { c += ' text-sm' } else if (props.size === 'lg') { c += ' text-lg' } else if (props.size === 'xl') { c += ' text-xl' }
 
       return c
     },

@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'XSpacer',
-  setup() {
+  setup () {
     return () => <div class="flex-grow"></div>
   },
 })

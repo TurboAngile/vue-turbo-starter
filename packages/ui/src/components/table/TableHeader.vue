@@ -1,14 +1,14 @@
 <script lang="ts">
-const validators = {
-  sort: [1,-1],
-  textAlign: ['left','center','right','justify'],
-}
-
-export default { name: 'XTableHeader', validators }
 </script>
 
 <script setup lang="ts">
 import type { PropType } from 'vue'
+const validators = {
+  sort: [1, -1],
+  textAlign: ['left', 'center', 'right', 'justify'],
+}
+
+export default { name: 'XTableHeader', validators }
 
 export type Sort = 1 | -1 | undefined
 export type Align = 'left' | 'center' | 'right' | 'justify' | undefined
@@ -49,7 +49,7 @@ const props = defineProps({
       v-if="sortable"
       class="relative inline-block"
     >
-      <slot></slot>
+      <slot />
 
       <svg
         v-if="sort && [1, -1].includes(sort)"
@@ -86,7 +86,7 @@ const props = defineProps({
     </div>
 
     <template v-else>
-      <slot></slot>
+      <slot />
     </template>
   </th>
 </template>

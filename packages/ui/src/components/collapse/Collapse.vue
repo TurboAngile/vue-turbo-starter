@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XCollapse' }
 </script>
 
 <script setup lang="ts">
@@ -10,6 +9,7 @@ import { useColors } from '../../composables/colors'
 import XIcon from '../../components/icon/Icon.vue'
 
 import theme from './Collapse.theme'
+export default { name: 'XCollapse' }
 
 const props = defineProps({
   ...useColors.props(),
@@ -32,13 +32,12 @@ watch(() => props.expanded, () => {
   collapsed.value = !props.expanded
 })
 
-function onBeforeEnter(el: HTMLElement) {
-  if (animated.value) el.style.height = '0px'
+function onBeforeEnter (el: HTMLElement) {
+  if (animated.value) { el.style.height = '0px' }
 }
 
-function onEnter(el: HTMLElement, done: ()=> void) {
-  if (!animated.value) done()
-  else {
+function onEnter (el: HTMLElement, done: ()=> void) {
+  if (!animated.value) { done() } else {
     el.addEventListener('transitionend', done)
     setTimeout(() => {
       el.style.height = `${el.scrollHeight}px`
@@ -46,7 +45,7 @@ function onEnter(el: HTMLElement, done: ()=> void) {
   }
 }
 
-function onAfterEnter(el: HTMLElement) {
+function onAfterEnter (el: HTMLElement) {
   if (!animated.value) {
     animated.value = true
   } else {
@@ -54,14 +53,13 @@ function onAfterEnter(el: HTMLElement) {
   }
 }
 
-function onBeforeLeave(el: HTMLElement) {
-  if (!animated.value) return
+function onBeforeLeave (el: HTMLElement) {
+  if (!animated.value) { return }
   el.style.height = `${el.scrollHeight}px`
 }
 
-function onLeave(el: HTMLElement ,done: ()=> void) {
-  if (!animated.value) done()
-  else {
+function onLeave (el: HTMLElement, done: ()=> void) {
+  if (!animated.value) { done() } else {
     el.addEventListener('transitionend', done)
     setTimeout(() => {
       el.style.height = '0px'
@@ -69,7 +67,7 @@ function onLeave(el: HTMLElement ,done: ()=> void) {
   }
 }
 
-function onAfterLeave(el: HTMLElement) {
+function onAfterLeave (el: HTMLElement) {
   if (!animated.value) {
     animated.value = true
   } else {
@@ -77,21 +75,21 @@ function onAfterLeave(el: HTMLElement) {
   }
 }
 
-function open(anim = true) {
+function open (anim = true) {
   animated.value = anim
   collapsed.value = false
 }
 
-function close(anim = true) {
+function close (anim = true) {
   animated.value = anim
   collapsed.value = true
 }
 
-function toggle() {
-  if (!props.disabled) collapsed.value = !collapsed.value
+function toggle () {
+  if (!props.disabled) { collapsed.value = !collapsed.value }
 }
 
-function onExpand(anim = true) {
+function onExpand (anim = true) {
   open(anim)
   emit('expand')
 }
@@ -114,7 +112,7 @@ defineExpose({ toggle, open, close })
       @click="toggle"
     >
       <div class="flex-1 overflow-hidden">
-        <slot :collapsed="collapsed"></slot>
+        <slot :collapsed="collapsed" />
       </div>
 
       <div v-if="showIcon" :class="classes.icon">
@@ -143,7 +141,7 @@ defineExpose({ toggle, open, close })
     </div>
 
     <template v-if="$slots.summary">
-      <slot name="summary"></slot>
+      <slot name="summary" />
     </template>
 
     <transition
@@ -155,7 +153,7 @@ defineExpose({ toggle, open, close })
       @after-leave="onAfterLeave"
     >
       <div v-show="!collapsed" :class="classes.content">
-        <slot name="content" :expand="onExpand" :collapsed="collapsed"></slot>
+        <slot name="content" :expand="onExpand" :collapsed="collapsed" />
       </div>
     </transition>
   </component>

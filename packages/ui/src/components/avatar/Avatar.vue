@@ -1,8 +1,4 @@
 <script lang="ts">
-export default {
-  name: 'XAvatar',
-  validators: useCommon.validators(),
-}
 </script>
 
 <script setup lang="ts">
@@ -15,6 +11,10 @@ import { avatarIcon } from '../../common/icons'
 import XIcon from '../../components/icon/Icon.vue'
 
 import theme from './Avatar.theme'
+export default {
+  name: 'XAvatar',
+  validators: useCommon.validators(),
+}
 
 const props = defineProps({
   ...useCommon.props(),
@@ -44,7 +44,7 @@ const initials = computed(() => {
 if (typeof window !== 'undefined' && Image) {
   watch(() => props.image, (src) => {
     source.value = undefined
-    if (!src) return
+    if (!src) { return }
     const img = new Image()
 
     img.onload = () => { source.value = props.image }
@@ -73,7 +73,7 @@ const { styles, classes, className } = useTheme('avatar', theme, props, { source
       :alt="alt"
       :src="image"
       class="h-full w-full"
-    />
+    >
 
     <span
       v-else-if="name"
@@ -81,7 +81,7 @@ const { styles, classes, className } = useTheme('avatar', theme, props, { source
     >{{ initials }}</span>
 
     <slot v-else-if="!name" name="avatarIcon">
-      <x-icon :size="size" :icon="avatarIcon"/>
+      <x-icon :size="size" :icon="avatarIcon" />
     </slot>
   </component>
 </template>

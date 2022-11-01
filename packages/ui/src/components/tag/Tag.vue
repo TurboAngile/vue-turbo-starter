@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XTag' }
 </script>
 
 <script setup lang="ts">
@@ -12,6 +11,7 @@ import { closeIcon } from '../../common/icons'
 import XIcon from '../icon/Icon.vue'
 
 import theme from './Tag.theme'
+export default { name: 'XTag' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -28,10 +28,7 @@ const props = defineProps({
 defineEmits(['remove'])
 
 const closeIconSize = computed(() => {
-  if (props.size === 'xs') return 'xs'
-  else if (props.size === 'sm') return 'sm'
-  else if (props.size === 'lg') return 'md'
-  else if (props.size === 'xl') return 'lg'
+  if (props.size === 'xs') { return 'xs' } else if (props.size === 'sm') { return 'sm' } else if (props.size === 'lg') { return 'md' } else if (props.size === 'xl') { return 'lg' }
 
   return 'sm'
 })
@@ -56,7 +53,7 @@ const { styles, classes, className } = useTheme('tag', theme, props)
       v-if="removable"
       class="max-w-full truncate"
     >
-      <slot></slot>
+      <slot />
       <x-icon
         :size="closeIconSize"
         :icon="closeIcon"
@@ -65,6 +62,6 @@ const { styles, classes, className } = useTheme('tag', theme, props)
       />
     </span>
 
-    <slot v-else></slot>
+    <slot v-else />
   </component>
 </template>

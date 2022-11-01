@@ -1,5 +1,4 @@
 <script lang="ts">
-export default { name: 'XScroll' }
 </script>
 
 <script setup lang="ts">
@@ -8,6 +7,7 @@ import { useScroll, useResizeObserver, useEventListener } from '@vueuse/core'
 import { useTheme } from '../../composables/theme'
 
 import theme from './Scroll.theme'
+export default { name: 'XScroll' }
 
 const props = defineProps({
   shadow: Boolean,
@@ -26,15 +26,16 @@ const { left, right, top, bottom } = toRefs(arrivedState)
 
 useResizeObserver(scrollEl, triggerScroll)
 
-if (props.horizontal && props.mousewheel)
+if (props.horizontal && props.mousewheel) {
   useEventListener(scrollEl, 'wheel', (e: WheelEvent) => {
-    if (!scrollEl.value || scrollEl.value.scrollWidth <= scrollEl.value.clientWidth) return
+    if (!scrollEl.value || scrollEl.value.scrollWidth <= scrollEl.value.clientWidth) { return }
 
     e.preventDefault()
     scrollEl.value.scrollLeft += e.deltaY + e.deltaX
   })
+}
 
-function triggerScroll() {
+function triggerScroll () {
   scrollEl.value?.dispatchEvent(new CustomEvent('scroll'))
 }
 
@@ -74,7 +75,7 @@ const { styles, classes, className } = useTheme('scroll', theme, props)
         }
       ]"
     >
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
