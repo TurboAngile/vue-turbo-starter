@@ -1,11 +1,11 @@
 <script lang="ts">
+export default { name: 'XCard' }
 </script>
 
 <script setup lang="ts">
 import { useTheme } from '../../composables/theme'
 
 import theme from './Card.theme'
-export default { name: 'XCard' }
 
 const props = defineProps({
   tag: {
@@ -27,6 +27,6 @@ const { styles, classes, className } = useTheme('card', theme, props)
       classes.wrapper
     ]"
   >
-    <slot />
+    <slot></slot>
   </component>
 </template>

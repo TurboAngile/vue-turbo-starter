@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XNotifications } from '@ui/main'
+import { XNotifications } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 

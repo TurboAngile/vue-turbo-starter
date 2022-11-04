@@ -1,11 +1,11 @@
 <script lang="ts">
+export default { name: 'XDivider' }
 </script>
 
 <script setup lang="ts">
 import { useTheme } from '../../composables/theme'
 
 import theme from './Divider.theme'
-export default { name: 'XDivider' }
 
 const props = defineProps({
   label: String,
@@ -31,7 +31,7 @@ const { styles, classes, className } = useTheme('divider', theme, props)
           height: !vertical ? '1px' : 'auto'
         }
       ]"
-    />
+    ></div>
     <div
       v-if="label"
       class="font-medium text-sm text-gray-600 dark:text-gray-300"
@@ -42,7 +42,7 @@ const { styles, classes, className } = useTheme('divider', theme, props)
           'mx-4': !vertical
         }]"
       v-text="label"
-    />
+    ></div>
     <div
       :class="classes.line"
       :style="[
@@ -51,6 +51,6 @@ const { styles, classes, className } = useTheme('divider', theme, props)
           height: !vertical ? '1px' : 'auto'
         }
       ]"
-    />
+    ></div>
   </div>
 </template>

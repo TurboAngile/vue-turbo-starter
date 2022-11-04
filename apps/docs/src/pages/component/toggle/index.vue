@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XToggle } from '@ui/main'
+import { XToggle } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 import VariantsDemoCode from './variants.vue?raw'

@@ -1,5 +1,5 @@
 <script setup>
-import { useNotifications } from '@ui/main'
+import { useNotifications } from '@ui'
 
 const notification = useNotifications('notifica')
 

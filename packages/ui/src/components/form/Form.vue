@@ -1,4 +1,8 @@
 <script lang="ts">
+export default {
+  name: 'XForm',
+  inheritAttrs: false,
+}
 </script>
 
 <script setup lang="ts">
@@ -7,10 +11,6 @@ import { injectFormKey } from '../../composables/keys'
 import { useTheme } from '../../composables/theme'
 
 import theme from './Form.theme'
-export default {
-  name: 'XForm',
-  inheritAttrs: false,
-}
 
 export type FormError = {
   field: string
@@ -46,16 +46,17 @@ const inputs: Form[] = []
 
 provide(injectFormKey, {
   registerInput: (name: string, focus: ()=> void, validate: ()=> boolean, setError: (val: string)=> void) => {
-    const exists = inputs.find(i => i.name === name)
+    const exists = inputs.find((i) => i.name === name)
 
     if (exists) {
       exists.focus = focus
       exists.validate = validate
       exists.setError = setError
-    } else { inputs.push({ name, focus, validate, setError }) }
+    }
+    else inputs.push({ name, focus, validate, setError })
   },
   unregisterInput: (name: string) => {
-    const index = inputs.findIndex(i => i.name === name)
+    const index = inputs.findIndex((i) => i.name === name)
 
     inputs.splice(index, 1)
   },
@@ -63,25 +64,23 @@ provide(injectFormKey, {
 })
 
 onMounted(() => {
-  if (props.autoFocus && inputs && inputs.length > 0) { inputs[0].focus() }
+  if (props.autoFocus && inputs && inputs.length > 0) inputs[0].focus()
 })
 
 watch(() => props.errors, (errors) => {
-  if (errors) {
-    nextTick(() => {
-      if (Array.isArray(errors)) {
-        errors.forEach((error: any) => {
-          const input = inputs.find(i => i.name === error.field)
+  if (errors) nextTick(() => {
+    if (Array.isArray(errors)) errors.forEach((error: any) => {
+      const input = inputs.find((i) => i.name === error.field)
 
-          if (input) { input.setError(error.msg) }
-        })
-      } else {
-        const input = inputs.find(i => i.name === (errors as FormError).field)
-
-        if (input) { input.setError((errors as FormError).msg) }
-      }
+      if (input) input.setError(error.msg)
     })
-  }
+
+    else {
+      const input = inputs.find((i) => i.name === (errors as FormError).field)
+
+      if (input) input.setError((errors as FormError).msg)
+    }
+  })
 })
 
 const validate = () => {
@@ -94,7 +93,7 @@ const validate = () => {
       isFormValid = false
 
       // focus on input error
-      if (input.focus) { input.focus() }
+      if (input.focus) input.focus()
     }
   })
 
@@ -123,7 +122,7 @@ const { styles, classes, className } = useTheme('form', theme, props)
     @submit="submit"
   >
     <fieldset :disabled="disabled">
-      <slot />
+      <slot></slot>
     </fieldset>
   </form>
 </template>

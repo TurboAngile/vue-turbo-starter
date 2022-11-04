@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XProgress } from '@ui/main'
+import { XProgress } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 import VariantsDemoCode from './variants.vue?raw'

@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XLink' }
 </script>
 
 <script setup lang="ts">
@@ -9,7 +10,6 @@ import { externalIcon } from '../../common/icons'
 import XIcon from '../icon/Icon.vue'
 
 import theme from './Link.theme'
-export default { name: 'XLink' }
 
 const props = defineProps({
   ...useColors.props(),

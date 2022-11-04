@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XIcon' }
 </script>
 
 <script setup lang="ts">
@@ -8,7 +9,6 @@ import { injectIconsKey } from '../../composables/keys'
 import { useTheme } from '../../composables/theme'
 
 import theme from './Icon.theme'
-export default { name: 'XIcon' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -60,7 +60,7 @@ watchEffect(() => {
   }
 })
 
-function getSVG (svgString: string) {
+function getSVG(svgString: string) {
   svgString = svgString.trim()
   const content = svgString.substring(svgString.indexOf('>') + 1, svgString.lastIndexOf('</svg>'))
   const attrsRaw = svgString.substring(svgString.indexOf('<svg') + 4, svgString.indexOf('>')).trim().match(/[\w-]+="[^"]*"/g)
@@ -70,7 +70,7 @@ function getSVG (svgString: string) {
   attrsRaw?.forEach((a) => {
     const [attribute, value] = a.split('=')
 
-    if (!['height', 'width', 'class'].includes(attribute)) { attributes[attribute] = value.replace(/(^"|"$)/g, '') }
+    if (!['height', 'width', 'class'].includes(attribute)) attributes[attribute] = value.replace(/(^"|"$)/g, '')
   })
 
   return {

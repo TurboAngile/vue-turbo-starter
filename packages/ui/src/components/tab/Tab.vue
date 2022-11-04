@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XTab' }
 </script>
 
 <script setup lang="ts">
@@ -12,7 +13,6 @@ import XIcon from '../icon/Icon.vue'
 import XLink from '../link/Link.vue'
 
 import theme from './Tab.theme'
-export default { name: 'XTab' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -30,7 +30,7 @@ const props = defineProps({
   exact: Boolean,
 })
 
-const computedValue = computed(() => props.to || props.value)
+const computedValue = computed(() => props.to || props.value )
 const computedLabel = computed(() => props.label || props.value)
 const teleportTo = ref(null)
 const elRef = ref<HTMLElement | typeof XLink | null>(null)
@@ -64,11 +64,11 @@ onMounted(() => {
   }
 })
 
-function check () {
+function check() {
   if (elRef.value && (elRef.value as typeof XLink).$el && (props.to)) {
     const active = (elRef.value as typeof XLink).$el.classList.contains(computedExact.value ? 'router-link-exact-active' : 'router-link-active')
 
-    if (active) { tabs.activateTab(computedValue.value) }
+    if (active) tabs.activateTab(computedValue.value)
   }
 }
 
@@ -76,8 +76,8 @@ const selected = computed(() => tabs.state.active === computedValue.value)
 
 const color = computed(() => tabs.state.color)
 
-function onClickTab () {
-  if (!props.to) { tabs.activateTab(computedValue.value) }
+function onClickTab() {
+  if (!props.to) tabs.activateTab(computedValue.value)
 }
 
 const { styles, classes, className } = useTheme('tab', theme, ref({
@@ -129,13 +129,11 @@ const { styles, classes, className } = useTheme('tab', theme, ref({
             :size="computedSize"
             :class="classes.icon"
           />
-          <div :class="classes.label">
-            {{ computedLabel }}
-          </div>
+          <div :class="classes.label">{{ computedLabel }}</div>
         </div>
       </slot>
       <teleport v-if="selected && teleportTo" :to="teleportTo">
-        <slot />
+        <slot></slot>
       </teleport>
     </component>
   </li>

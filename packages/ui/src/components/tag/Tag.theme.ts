@@ -5,7 +5,11 @@ export default {
     wrapper: ({ props, data }: ThemeParams) => {
       let c = 'inline-flex items-center leading-none max-w-full'
 
-      if (props.size === 'xs') { c += ' px-2 py-1 text-xs' } else if (props.size === 'sm') { c += ' px-2 py-1 text-sm' } else if (props.size === 'lg') { c += ' px-4 py-3 text-lg' } else if (props.size === 'xl') { c += ' px-6 py-6 text-xl' } else { c += ' px-3 py-2' }
+      if (props.size === 'xs') c += ' px-2 py-1 text-xs'
+      else if (props.size === 'sm') c += ' px-2 py-1 text-sm'
+      else if (props.size === 'lg') c += ' px-4 py-3 text-lg'
+      else if (props.size === 'xl') c += ' px-6 py-6 text-xl'
+      else c += ' px-3 py-2'
 
       return c
     },

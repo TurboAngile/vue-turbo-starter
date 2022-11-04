@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XPagination } from '@ui/main'
+import { XPagination } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 

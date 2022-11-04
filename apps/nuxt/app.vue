@@ -12,6 +12,7 @@ console.log(message)
       <Button prefix="test" type="primary">
         Button1
       </Button>
+      <Tooltip>111<template #tooltip>111</template></Tooltip>
     </div>
     <!-- <NuxtWelcome /> -->
   </div>

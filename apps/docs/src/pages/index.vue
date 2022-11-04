@@ -23,7 +23,7 @@
           @laughing-cli/create-ui
         </x-link>, the official Laughing UI project scaffolding tool. You will be presented with prompts for a number of optional features such as TypeScript.
       </p>
-      <code-snippet :code="`npm init @ui/main`" lang="bash" />
+      <code-snippet :code="`npm init @ui`" lang="bash" />
       <pre class="bg-slate-600 text-slate-50 text-xs mt-4 px-4 py-2 rounded-md">? Project type: › - Use arrow-keys. Return to submit.
 ❯   Vue 3
     Nuxt 3</pre>
@@ -38,15 +38,15 @@
         :snippets="[{
           label: 'npm',
           lang: 'bash',
-          code: 'npm install @ui/main'
+          code: 'npm install @ui'
         }, {
           label: 'yarn',
           lang: 'bash',
-          code: 'yarn add @ui/main'
+          code: 'yarn add @ui'
         }, {
           label: 'pnpm',
           lang: 'bash',
-          code: 'pnpm install @ui/main'
+          code: 'pnpm install @ui'
         }]"
       />
 
@@ -65,7 +65,7 @@
         lang="js"
         :code="`// tailwind.config.js
 const colors = require('tailwindcss/colors')
-const laughing = require('@ui/main/tailwind.preset')
+const laughing = require('@ui/tailwind.preset')
 
 module.exports = {
   darkMode: 'class',
@@ -76,7 +76,7 @@ module.exports = {
     './index.html',
     './**/*.vue',
     './src/**/*.{vue,js,ts,jsx,tsx}',
-    'node_modules/@ui/main/**/*',
+    'node_modules/@ui/**/*',
   ],
   theme: {
     extend: {
@@ -101,7 +101,7 @@ module.exports = {
       <code-snippet
         lang="js"
         :code="`import { createApp } from 'vue'
-import UI from '@ui/main'
+import UI from '@ui'
 
 const app = createApp(App)
 
@@ -115,12 +115,12 @@ app.use(UI, {
       <code-snippet
         lang="js"
         :code="`import { defineNuxtConfig } from 'nuxt'
-import { colors } from '@ui/main'
+import { colors } from '@ui'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   modules: [
-    ['@ui/main/nuxt', {
+    ['@ui/nuxt', {
       prefix: 'X',
       theme: {
         colors: {
@@ -152,7 +152,7 @@ export default defineNuxtConfig({
       <code-snippet
         lang="js"
         :code="`import { createApp } from 'vue'
-import { createUI, XButton, XAlert } from '@ui/main'
+import { createUI, XButton, XAlert } from '@ui'
 
 const app = createApp(App)
 

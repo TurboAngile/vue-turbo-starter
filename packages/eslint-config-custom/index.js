@@ -49,6 +49,7 @@ module.exports = defineConfig({
     'import/no-duplicates': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/no-v-model-argument': 'off',
+    'import/first': 'off',
   },
   ignorePatterns: ['**/*.json', 'dist', 'node_modules', '.turbo', '.nuxt', 'public', '.output', '!.storybook'],
 })

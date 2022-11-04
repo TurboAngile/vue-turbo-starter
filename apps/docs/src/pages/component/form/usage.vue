@@ -1,5 +1,5 @@
 <script setup>
-import { useNotifications } from '@ui/main'
+import { useNotifications } from '@ui'
 import { ref } from 'vue'
 
 const notifications = useNotifications('notifica')

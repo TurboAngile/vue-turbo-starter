@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XSelect' }
 </script>
 
 <script setup lang="ts">
@@ -19,7 +20,6 @@ import XPopoverContainer from '../../components/popover/PopoverContainer.vue'
 import XInputError from '../helpers/InputError'
 
 import theme from './Select.theme'
-export default { name: 'XSelect' }
 
 export type SelectOption = {
   value: number | string,
@@ -27,7 +27,7 @@ export type SelectOption = {
   label: string
 }
 
-const props = defineProps({
+const  props = defineProps({
   ...useCommon.props(),
   ...useInteractive.props(),
   ...useInputtable.props(),
@@ -48,21 +48,22 @@ const popoverRef = ref<typeof XPopover | null>(null)
 const selectedIndex = ref<number | undefined>()
 
 const selected = computed<any | any[]>({
-  get () {
+  get() {
     if (props.multiple) {
-      if (!props.modelValue) { return [] }
-      if (Array.isArray(props.modelValue)) { return props.modelValue } else { return [props.modelValue] }
+      if (!props.modelValue) return []
+      if (Array.isArray(props.modelValue)) return props.modelValue
+      else return [props.modelValue]
     }
 
     return props.modelValue
   },
-  set (value: string | number | []) {
+  set(value: string | number | []) {
     emit('update:modelValue', value)
   },
 })
 
 const internalOptions = computed(() => {
-  if (!props.options || props.options.length === 0) { return [] }
+  if (!props.options || props.options.length === 0) return []
 
   return props.options.map((option) => {
     let isActive = false
@@ -84,17 +85,18 @@ const internalOptions = computed(() => {
   })
 })
 
-const availableOptions = computed(() => props.options?.filter(option => !option.disabled))
+const availableOptions = computed(() => props.options?.filter((option) => !option.disabled))
 
 watch(() => popoverRef.value?.isOpen, () => {
-  if (popoverRef.value?.isOpen && (props.multiple || typeof selectedIndex.value === 'undefined')) { findSelectableIndex(-1) }
+  if (popoverRef.value?.isOpen && (props.multiple || typeof selectedIndex.value === 'undefined'))
+    findSelectableIndex(-1)
 })
 
 watch(selectedIndex, (index) => {
-  if (typeof index !== 'undefined' && itemsRef.value) { itemsRef.value[index].$el.scrollIntoView({ block: 'nearest', inline: 'nearest' }) }
+  if (typeof index !== 'undefined' && itemsRef.value) itemsRef.value[index].$el.scrollIntoView({ block: 'nearest', inline: 'nearest' })
 })
 
-function findSelectableIndex (start: number | undefined, direction = 'down') {
+function findSelectableIndex(start: number | undefined, direction = 'down') {
   if (!availableOptions.value || availableOptions.value.length === 0) {
     selectedIndex.value = undefined
 
@@ -108,17 +110,17 @@ function findSelectableIndex (start: number | undefined, direction = 'down') {
   if (direction === 'down') {
     let next = start + 1
 
-    if (next > internalOptions.value.length - 1) { next = 0 }
+    if (next > internalOptions.value.length - 1) next = 0
     while (internalOptions.value[next].disabled) {
-      if (++next > internalOptions.value.length - 1) { next = 0 }
+      if (++next > internalOptions.value.length - 1) next = 0
     }
     selectedIndex.value = next
   } else {
     let next = start - 1
 
-    if (next < 0) { next = internalOptions.value.length - 1 }
+    if (next < 0) next = internalOptions.value.length - 1
     while (internalOptions.value[next].disabled) {
-      if (--next < 0) { next = internalOptions.value.length - 1 }
+      if (--next < 0) next = internalOptions.value.length - 1
     }
     selectedIndex.value = next
   }
@@ -126,8 +128,8 @@ function findSelectableIndex (start: number | undefined, direction = 'down') {
 
 useEventListener(labelRef, 'keydown', handleKeydown)
 
-function handleKeydown (e: KeyboardEvent) {
-  if (internalOptions.value.length === 0) { return }
+function handleKeydown(e: KeyboardEvent) {
+  if (internalOptions.value.length === 0) return
 
   if (e.code === 'ArrowDown') {
     e.preventDefault()
@@ -139,7 +141,7 @@ function handleKeydown (e: KeyboardEvent) {
     findSelectableIndex(selectedIndex.value, 'down')
   } else if (e.code === 'ArrowUp') {
     e.preventDefault()
-    if (!popoverRef.value?.isOpen) { return }
+    if (!popoverRef.value?.isOpen) return
     findSelectableIndex(selectedIndex.value, 'up')
   } else if (e.code === 'Enter' || e.code === 'Space') {
     e.preventDefault()
@@ -151,7 +153,7 @@ function handleKeydown (e: KeyboardEvent) {
     }
     if (typeof selectedIndex.value !== 'undefined') {
       handleOptionClick(internalOptions.value[selectedIndex.value].value)
-      if (!props.multiple) { popoverRef.value?.close() }
+      if (!props.multiple) popoverRef.value?.close()
     }
   } else if (e.code === 'Escape') {
     e.preventDefault()
@@ -162,16 +164,17 @@ function handleKeydown (e: KeyboardEvent) {
   }
 }
 
-function handleOptionClick (value: string | number) {
-  const option = props.options?.find(i => i.value === value)
+function handleOptionClick(value: string | number) {
+  const option = props.options?.find((i) => i.value === value)
 
-  if (!option || option.disabled) { return }
+  if (!option || option.disabled) return
 
   if (props.multiple) {
     if (Array.isArray(selected.value)) {
       const index = selected.value.indexOf(value)
 
-      if (index !== -1) { selected.value.splice(index, 1) } else {
+      if (index !== -1) selected.value.splice(index, 1)
+      else {
         selected.value.push(value)
         emit('update:modelValue', selected.value)
       }
@@ -183,16 +186,16 @@ function handleOptionClick (value: string | number) {
   }
 }
 
-function isEmpty (value: string | number | []) {
-  if (typeof value === 'undefined' || value === null) { return true }
-  if (value === '') { return true }
-  if (Array.isArray(value) && value.length === 0) { return true }
-  if (!Array.isArray(value) && typeof value === 'object' && Object.keys(value).length === 0) { return true }
+function isEmpty(value: string | number | []) {
+  if (typeof value === 'undefined' || value === null) return true
+  if (value === '') return true
+  if (Array.isArray(value) && value.length === 0) return true
+  if (!Array.isArray(value) && typeof value === 'object' && Object.keys(value).length === 0) return true
 
   return false
 }
 
-function handleRemove (e: Event, value: string) {
+function handleRemove(e: Event, value: string) {
   e.stopPropagation()
 
   // find value in selected and remove it
@@ -204,10 +207,10 @@ function handleRemove (e: Event, value: string) {
   }
 }
 
-function getLabel (value: string | number | []) {
-  const option = props.options?.find(i => i.value === value)
+function getLabel(value: string | number | []) {
+  const option = props.options?.find((i) => i.value === value)
 
-  if (option) { return option.label }
+  if (option) return option.label
 
   return ''
 }
@@ -244,7 +247,7 @@ defineExpose({ focus, blur, reset, validate, setError })
       v-if="label"
       :class="classes.label"
       v-text="label"
-    />
+    ></p>
     <div class="relative">
       <x-popover
         ref="popoverRef"
@@ -346,6 +349,6 @@ defineExpose({ focus, blur, reset, validate, setError })
       </div>
     </div>
 
-    <x-input-error :error="errorInternal" :helper="helper" />
+    <x-input-error :error="errorInternal" :helper="helper"/>
   </label>
 </template>

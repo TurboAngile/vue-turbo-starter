@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XBadge' }
 </script>
 
 <script setup lang="ts">
@@ -8,7 +9,6 @@ import { useCommon } from '../../composables/common'
 import { useColors } from '../../composables/colors'
 
 import theme from './Badge.theme'
-export default { name: 'XBadge' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -41,11 +41,12 @@ const slots = useSlots()
 const positionClasses = computed(() => {
   const classes = []
 
-  if (props.position === 'top') { classes.push('top-0') }
-  if (props.position === 'bottom') { classes.push('bottom-0') }
-  if (props.align === 'left') { classes.push('left-0') }
-  if (props.align === 'right') { classes.push('right-0') }
-  if (slots.content) { classes.push('-m-[7.5%]') } else if (props.outlined) {
+  if (props.position === 'top') classes.push('top-0')
+  if (props.position === 'bottom') classes.push('bottom-0')
+  if (props.align === 'left') classes.push('left-0')
+  if (props.align === 'right') classes.push('right-0')
+  if (slots.content) classes.push('-m-[7.5%]')
+  else if (props.outlined) {
     classes.push('-m-[5%]')
   } else {
     classes.push('-m-[3.5%]')
@@ -57,8 +58,8 @@ const positionClasses = computed(() => {
 const offsetStyle = computed(() => {
   const style: any = {}
 
-  if (props.offsetX) { style[props.align === 'left' ? 'marginLeft' : 'marginRight'] = props.offsetX + 'px' }
-  if (props.offsetY) { style[props.position === 'top' ? 'marginTop' : 'marginBottom'] = props.offsetY + 'px' }
+  if (props.offsetX) style[props.align === 'left' ? 'marginLeft' : 'marginRight'] = props.offsetX + 'px'
+  if (props.offsetY) style[props.position === 'top' ? 'marginTop' : 'marginBottom'] = props.offsetY + 'px'
 
   return style
 })
@@ -76,7 +77,7 @@ const { styles, classes, className } = useTheme('badge', theme, props)
     ]"
   >
     <div class="relative inline-block">
-      <slot />
+      <slot></slot>
       <div
         v-if="show"
         class="absolute rounded-full z-10 bg-[color:var(--x-badge-bg)]"
@@ -91,7 +92,7 @@ const { styles, classes, className } = useTheme('badge', theme, props)
         <div
           v-if="animated"
           class="animate-ping opacity-75 absolute top-0 left-0 rounded-full h-full w-full z-10 bg-[color:var(--x-badge-bg)]"
-        />
+        ></div>
         <div
           class="text-xs text-white overflow-hidden"
           :class="[
@@ -104,7 +105,7 @@ const { styles, classes, className } = useTheme('badge', theme, props)
             }
           ]"
         >
-          <slot name="content" />
+          <slot name="content"></slot>
         </div>
       </div>
     </div>

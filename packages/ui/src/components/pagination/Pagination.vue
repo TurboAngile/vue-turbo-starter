@@ -1,9 +1,16 @@
 <script lang="ts">
-import { computed, ref, watch, type PropType } from 'vue'
 import { useCommon } from '../../composables/common'
+
+export default {
+  name: 'XPagination',
+  validators: {
+    ...useCommon.validators(),
+  },
+}
 </script>
 
 <script setup lang="ts">
+import { computed, ref, watch, type PropType } from 'vue'
 import { useTheme } from '../../composables/theme'
 import { dotsIcon, prevIcon, nextIcon } from '../../common/icons'
 
@@ -13,13 +20,6 @@ import XButton from '../button/Button.vue'
 import XPaginationItem from './PaginationItem.vue'
 
 import theme from './Pagination.theme'
-
-export default {
-  name: 'XPagination',
-  validators: {
-    ...useCommon.validators(),
-  },
-}
 
 const props = defineProps({
   ...useCommon.props(),
@@ -41,10 +41,10 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const pages = computed(() => {
-  if (props.totalPages === 3) { return [2] }
+  if (props.totalPages === 3) return [2]
   if (props.totalPages > 2) {
-    if (props.modelValue === 1 || props.modelValue === 2) { return [2, 3] }
-    if (props.modelValue === props.totalPages || props.modelValue === props.totalPages - 1) { return [props.totalPages - 2, props.totalPages - 1] }
+    if (props.modelValue === 1 || props.modelValue === 2) return [2, 3]
+    if (props.modelValue === props.totalPages || props.modelValue === props.totalPages - 1) return [props.totalPages - 2, props.totalPages - 1]
 
     return [props.modelValue - 1, props.modelValue, props.modelValue + 1]
   }
@@ -54,7 +54,7 @@ const pages = computed(() => {
 
 const quickInput = ref<string>(props.modelValue + '')
 
-function onQuickInput () {
+function onQuickInput() {
   const number = parseInt(quickInput.value)
 
   if (number >= 0 && number <= props.totalPages) {
@@ -68,16 +68,19 @@ watch(() => props.modelValue, (value) => {
   quickInput.value = props.modelValue + ''
 })
 
-function prevPage () {
-  if (props.modelValue > 1) { emit('update:modelValue', props.modelValue - 1) }
+function prevPage() {
+  if (props.modelValue > 1) emit('update:modelValue', props.modelValue - 1)
 }
 
-function nextPage () {
-  if (props.modelValue < props.totalPages) { emit('update:modelValue', props.modelValue + 1) }
+function nextPage() {
+  if (props.modelValue < props.totalPages) emit('update:modelValue', props.modelValue + 1)
 }
 
 const quickButtonSize = computed(() => {
-  if (props.size === 'xs') { return 'xs' } else if (props.size === 'sm') { return 'sm' } else if (props.size === 'lg') { return 'md' } else if (props.size === 'xl') { return 'lg' }
+  if (props.size === 'xs') return 'xs'
+  else if (props.size === 'sm') return 'sm'
+  else if (props.size === 'lg') return 'md'
+  else if (props.size === 'xl') return 'lg'
 
   return 'sm'
 })
@@ -120,7 +123,7 @@ const { styles, classes, className } = useTheme('pagination', theme, props)
         :selected="modelValue === 1"
         @input="(value: Event) => $emit('update:modelValue', value)"
       />
-      <x-icon v-if="totalPages > 3 && modelValue > 3" class="mx-1" :icon="dotsIcon" :size="size" />
+      <x-icon v-if="totalPages > 3 && modelValue > 3" class="mx-1" :icon="dotsIcon" :size="size"/>
       <x-pagination-item
         v-for="i in pages"
         :key="i"
@@ -130,7 +133,7 @@ const { styles, classes, className } = useTheme('pagination', theme, props)
         :selected="modelValue === i"
         @input="(value: Event) => $emit('update:modelValue', value)"
       />
-      <x-icon v-if="totalPages > 3 && modelValue < totalPages - 2" class="mx-1" :icon="dotsIcon" :size="size" />
+      <x-icon v-if="totalPages > 3 && modelValue < totalPages - 2" class="mx-1" :icon="dotsIcon" :size="size"/>
       <x-pagination-item
         v-if="totalPages > 1"
         :value="totalPages"
@@ -150,7 +153,7 @@ const { styles, classes, className } = useTheme('pagination', theme, props)
           i === modelValue ? 'bg-[color:var(--x-pagination-bg)]': 'bg-gray-100 hover:bg-gray-200'
         ]"
         @click="$emit('update:modelValue', i)"
-      />
+      ></li>
     </template>
   </ul>
 </template>

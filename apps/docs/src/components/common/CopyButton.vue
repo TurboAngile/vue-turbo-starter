@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useNotifications } from '@ui/main'
+import { useNotifications } from '@ui'
 import { onUnmounted, ref } from 'vue'
 
 const props = defineProps({

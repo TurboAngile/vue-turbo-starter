@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XMenuItem' }
 </script>
 
 <script setup lang="ts">
@@ -13,7 +14,6 @@ import XSpinner from '../../components/spinner/Spinner.vue'
 import XLink from '../../components/link/Link.vue'
 
 import theme from './MenuItem.theme'
-export default { name: 'XMenuItem' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -25,7 +25,7 @@ const props = defineProps({
   active: Boolean,
   onClick: Function,
   inactive: Boolean,
-  value: [Number, String],
+  value: [Number,String],
   to: String,
   exact: Boolean,
   href: String,
@@ -59,19 +59,17 @@ const cItem = computed(() => ({
 const htmlTag = computed(() => cItem.value.to || cItem.value.href ? XLink : 'div')
 
 onMounted(() => {
-  if (!elRef.value) { return }
+  if (!elRef.value) return
 
   check()
 
-  if (htmlTag.value === XLink) {
-    useMutationObserver(elRef.value.$el, check, {
-      attributes: true,
-      attributeFilter: ['class'],
-    })
-  }
+  if (htmlTag.value === XLink) useMutationObserver(elRef.value.$el, check, {
+    attributes: true,
+    attributeFilter: ['class'],
+  })
 })
 
-function onItemClick (e: Event) {
+function onItemClick(e: Event) {
   if (cItem.value.disabled) {
     e.stopPropagation()
     e.preventDefault()
@@ -83,7 +81,7 @@ function onItemClick (e: Event) {
   emit('click', e)
 }
 
-function check () {
+function check() {
   if (elRef.value && elRef.value.$el && (cItem.value.href || cItem.value.to)) {
     const active = elRef.value.$el.classList.contains(cItem.value.exact ? 'router-link-exact-active' : 'router-link-active') || false
 
@@ -94,7 +92,7 @@ function check () {
 }
 
 watch(() => isActive.value, (val) => {
-  if (val) { emit('active') }
+  if (val) emit('active')
 })
 
 watch(() => cItem.value.active, (val) => {
@@ -131,9 +129,9 @@ const { styles, classes, className } = useTheme('menu-item', theme, computedProp
     @click="onItemClick"
   >
     <span v-if="$slots.prefix" class="mr-2 shrink-0">
-      <slot name="prefix" />
+      <slot name="prefix"></slot>
     </span>
-    <x-icon v-else-if="cItem.icon" :size="cItem.size" :icon="cItem.icon" class="mr-2" />
+    <x-icon v-else-if="cItem.icon" :size="cItem.size" :icon="cItem.icon" class="mr-2"/>
 
     <span class="flex-1 truncate">
       <slot>{{ cItem.label }}</slot>
@@ -143,9 +141,9 @@ const { styles, classes, className } = useTheme('menu-item', theme, computedProp
       <x-spinner v-if="cItem.loading" :size="cItem.size" />
       <template v-else>
         <span v-if="$slots.suffix">
-          <slot name="suffix" />
+          <slot name="suffix"></slot>
         </span>
-        <x-icon v-else-if="cItem.iconRight" :size="cItem.size" :icon="cItem.iconRight" />
+        <x-icon v-else-if="cItem.iconRight" :size="cItem.size" :icon="cItem.iconRight"/>
       </template>
     </span>
   </component>

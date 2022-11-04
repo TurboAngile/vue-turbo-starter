@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XToggle' }
 </script>
 
 <script setup lang="ts">
@@ -13,7 +14,6 @@ import XSpinner from '../../components/spinner/Spinner.vue'
 import XInputError from '../helpers/InputError'
 
 import theme from './Toggle.theme'
-export default { name: 'XToggle' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -31,10 +31,10 @@ const emit = defineEmits(useInputtable.emits(false))
 const elRef = ref<HTMLElement | null>(null)
 
 const checked = computed({
-  get (): boolean {
+  get(): boolean {
     return !!props.modelValue
   },
-  set (val: boolean) {
+  set(val: boolean) {
     emit('update:modelValue', val)
   },
 })
@@ -86,7 +86,7 @@ defineExpose({ focus, blur, reset, validate, setError })
             :name="name"
             :required="required"
             :value="modelValue"
-          >
+          />
           <div
             :class="[
               classes.button,
@@ -96,7 +96,7 @@ defineExpose({ focus, blur, reset, validate, setError })
               },
               disabled ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-800'
             ]"
-          />
+          ></div>
         </div>
       </div>
       <span
@@ -104,10 +104,11 @@ defineExpose({ focus, blur, reset, validate, setError })
         class="ml-2"
         :class="classes.label"
         v-text="label"
-      />
+      >
+      </span>
       <x-spinner v-if="loading" :size="size" class="ml-1" />
     </div>
 
-    <x-input-error :error="errorInternal" :helper="helper" />
+    <x-input-error :error="errorInternal" :helper="helper"/>
   </label>
 </template>

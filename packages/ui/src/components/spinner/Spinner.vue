@@ -1,11 +1,11 @@
 <script lang="ts">
+export default { name: 'XSpinner' }
 </script>
 
 <script setup lang="ts">
 import { useCommon } from '../../composables/common'
 
 import XIcon from '../../components/icon/Icon.vue'
-export default { name: 'XSpinner' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -17,5 +17,5 @@ const props = defineProps({
 </script>
 
 <template>
-  <x-icon :icon="icon" :size="size" view-box="0 0 38 38" />
+  <x-icon :icon="icon" :size="size" view-box="0 0 38 38"/>
 </template>

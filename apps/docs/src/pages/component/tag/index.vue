@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XTag } from '@ui/main'
+import { XTag } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 

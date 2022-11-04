@@ -1,11 +1,11 @@
 <script lang="ts">
+export default { name: 'XContainer' }
 </script>
 
 <script setup lang="ts">
 import { useTheme } from '../../composables/theme'
 
 import theme from './Container.theme'
-export default { name: 'XContainer' }
 
 const props = defineProps({
   tag: {
@@ -26,6 +26,6 @@ const { styles, classes, className } = useTheme('container', theme, props)
       classes.wrapper
     ]"
   >
-    <slot />
+    <slot></slot>
   </component>
 </template>

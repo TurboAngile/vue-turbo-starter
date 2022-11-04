@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XMenu, XMenuItem } from '@ui/main'
+import { XMenu, XMenuItem } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 

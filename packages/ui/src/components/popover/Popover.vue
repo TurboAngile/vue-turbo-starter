@@ -1,12 +1,4 @@
 <script lang="ts">
-</script>
-
-<script setup lang="ts">
-import { computed, ref, useCssModule, watch, type PropType } from 'vue'
-import { onClickOutside, useEventListener } from '@vueuse/core'
-import { useTheme } from '../../composables/theme'
-
-import theme from './Popover.theme'
 const validators = {
   align: ['bottom', 'center', 'left', 'right', 'top'],
   position: ['bottom', 'left', 'right', 'top'],
@@ -16,6 +8,14 @@ export default {
   name: 'XPopover',
   validators,
 }
+</script>
+
+<script setup lang="ts">
+import { computed, ref, useCssModule, watch, type PropType } from 'vue'
+import { onClickOutside, useEventListener } from '@vueuse/core'
+import { useTheme } from '../../composables/theme'
+
+import theme from './Popover.theme'
 
 const props = defineProps({
   align: {
@@ -82,19 +82,23 @@ const contentClasses = computed(() => {
   let position = props.position
 
   if (isOutTop.value) {
-    if (position === 'top') { position = 'bottom' } else if ((position === 'left' || position === 'right')) { align = 'top' }
+    if (position === 'top') { position = 'bottom' }
+    else if ((position === 'left' || position === 'right')) { align = 'top' }
   }
 
   if (isOutBottom.value) {
-    if (position === 'bottom') { position = 'top' } else if ((position === 'left' || position === 'right')) { align = 'bottom' }
+    if (position === 'bottom') { position = 'top' }
+    else if ((position === 'left' || position === 'right')) { align = 'bottom' }
   }
 
   if (isOutLeft.value) {
-    if (position === 'left') { position = 'right' } else if ((position === 'top' || position === 'bottom')) { align = 'left' }
+    if (position === 'left') { position = 'right' }
+    else if ((position === 'top' || position === 'bottom')) { align = 'left' }
   }
 
   if (isOutRight.value) {
-    if (position === 'right') { position = 'left' } else if ((position === 'top' || position === 'bottom')) { align = 'right' }
+    if (position === 'right') { position = 'left' }
+    else if ((position === 'top' || position === 'bottom')) { align = 'right' }
   }
 
   if (position === 'top') { c.push(`bottom-full ${$style.popoverTop}`) }

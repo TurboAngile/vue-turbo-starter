@@ -1,11 +1,11 @@
 <script lang="ts">
+export default { name: 'XPopoverContainer' }
 </script>
 
 <script setup lang="ts">
 import { useTheme } from '../../composables/theme'
 
 import theme from './PopoverContainer.theme'
-export default { name: 'XPopoverContainer' }
 
 const props = defineProps({
   tag: {
@@ -26,6 +26,6 @@ const { styles, classes, className } = useTheme('popover-container', theme, prop
       classes.wrapper
     ]"
   >
-    <slot />
+    <slot></slot>
   </component>
 </template>

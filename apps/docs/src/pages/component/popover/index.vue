@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XPopover, XPopoverContainer } from '@ui/main'
+import { XPopover, XPopoverContainer } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 

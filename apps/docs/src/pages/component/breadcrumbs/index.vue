@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XBreadcrumbs } from '@ui/main'
+import { XBreadcrumbs } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XCheckbox' }
 </script>
 
 <script setup lang="ts">
@@ -13,7 +14,6 @@ import XSpinner from '../../components/spinner/Spinner.vue'
 import XInputError from '../helpers/InputError'
 
 import theme from './Checkbox.theme'
-export default { name: 'XCheckbox' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -38,7 +38,7 @@ watch(() => checked.value, (value) => {
   emit('update:modelValue', value)
 })
 
-function toggle () {
+function toggle() {
   checked.value = !checked.value
 }
 
@@ -82,7 +82,7 @@ defineExpose({ focus, blur, toggle, reset, validate, setError })
         :disabled="disabled || loading"
         :name="name"
         :required="required"
-      >
+      />
       <div
         :class="[
           classes.box,
@@ -100,12 +100,12 @@ defineExpose({ focus, blur, toggle, reset, validate, setError })
         </slot>
       </div>
       <div :class="classes.label">
-        <span v-if="label" v-text="label" />
-        <slot v-else />
+        <span v-if="label" v-text="label"></span>
+        <slot v-else></slot>
       </div>
     </div>
 
-    <x-input-error :error="errorInternal" :helper="helper" />
+    <x-input-error :error="errorInternal" :helper="helper"/>
   </label>
 </template>
 

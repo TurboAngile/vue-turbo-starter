@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XRadio' }
 </script>
 
 <script setup lang="ts">
@@ -13,7 +14,6 @@ import XSpinner from '../../components/spinner/Spinner.vue'
 import XInputError from '../helpers/InputError'
 
 import theme from './Radio.theme'
-export default { name: 'XRadio' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -31,10 +31,10 @@ const emit = defineEmits(useInputtable.emits(false))
 const elRef = ref<HTMLElement | null>(null)
 
 const selected = computed({
-  get () {
+  get() {
     return props.value === props.modelValue
   },
-  set () {
+  set() {
     emit('update:modelValue', props.value)
   },
 })
@@ -77,7 +77,7 @@ defineExpose({ focus, blur, reset, validate, setError })
         :disabled="disabled || loading"
         type="radio"
         class="invisible absolute"
-      >
+      />
       <div
         :class="[
           $style['radio'],
@@ -95,7 +95,7 @@ defineExpose({ focus, blur, reset, validate, setError })
             $style['radio_circle']
           ]"
         >
-          <circle cx="10" cy="10" r="10" />
+          <circle cx="10" cy="10" r="10"/>
         </svg>
       </div>
       <div>
@@ -103,18 +103,18 @@ defineExpose({ focus, blur, reset, validate, setError })
           v-if="label"
           :class="classes.label"
           v-text="label"
-        />
+        ></div>
 
         <div
           v-if="$slots.default"
           :class="classes.content"
         >
-          <slot />
+          <slot></slot>
         </div>
       </div>
     </div>
 
-    <x-input-error :error="errorInternal" :helper="helper" />
+    <x-input-error :error="errorInternal" :helper="helper"/>
   </label>
 </template>
 

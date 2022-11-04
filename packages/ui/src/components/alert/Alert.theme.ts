@@ -2,14 +2,14 @@ import type { ThemeParams } from '../../composables/theme'
 
 export default {
   classes: {
-    /* tw */
+    /*tw*/
     wrapper: 'flex rounded-md space-x-2 px-4 py-2 border items-center',
   },
   styles: ({ props, colors, css }: ThemeParams) => {
     const color = colors.getPalette(props.color)
     const vars: (object | string)[] = []
 
-    if (props.glow) { vars.push(css.get('glow', colors.getColorOpacity(color[500], 0.5))) }
+    if (props.glow) vars.push(css.get('glow', colors.getColorOpacity(color[500], 0.5)))
 
     if (props.color) {
       if (props.light) {

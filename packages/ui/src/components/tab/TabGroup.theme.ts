@@ -7,11 +7,11 @@ export default {
     list: ({ props, colors, css }: ThemeParams) => {
       const c = ['flex min-w-full w-fit']
 
-      if (props.variant === 'line') { c.push('border-b border-gray-200 dark:border-gray-700') }
-      if (props.variant === 'line' && !props.grow) { c.push('space-x-8') }
-      if (props.variant === 'block') { c.push('z-[1]') }
-      if (props.align === 'center') { c.push('justify-center') }
-      if (props.align === 'right') { c.push('justify-end') }
+      if (props.variant === 'line') c.push('border-b border-gray-200 dark:border-gray-700')
+      if (props.variant === 'line' && !props.grow) c.push('space-x-8')
+      if (props.variant === 'block') c.push('z-[1]')
+      if (props.align === 'center') c.push('justify-center')
+      if (props.align === 'right') c.push('justify-end')
 
       return c
     },
@@ -19,9 +19,9 @@ export default {
     tracker: ({ props }: ThemeParams) => {
       const c = ['absolute transition-all duration-150']
 
-      if (props.variant === 'line') { c.push('h-[2px] -mt-[2px] bg-[color:var(--x-tabs-text)] dark:bg-[color:var(--x-tabs-dark-text)]') }
+      if (props.variant === 'line') c.push('h-[2px] -mt-[2px] bg-[color:var(--x-tabs-text)] dark:bg-[color:var(--x-tabs-dark-text)]')
 
-      if (props.variant === 'block') { c.push('rounded-md h-full top-0 bg-[color:var(--x-tabs-bg)] dark:bg-[color:var(--x-tabs-dark-bg)]') }
+      if (props.variant === 'block') c.push('rounded-md h-full top-0 bg-[color:var(--x-tabs-bg)] dark:bg-[color:var(--x-tabs-dark-bg)]')
 
       return c
     },

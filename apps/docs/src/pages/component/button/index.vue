@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XButton, XButtonGroup } from '@ui/main'
+import { XButton, XButtonGroup } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 import VariantsDemoCode from './variants.vue?raw'

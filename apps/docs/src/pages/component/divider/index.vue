@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XDivider } from '@ui/main'
+import { XDivider } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 import LabelDemoCode from './label.vue?raw'

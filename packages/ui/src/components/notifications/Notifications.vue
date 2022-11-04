@@ -1,4 +1,13 @@
 <script lang="ts">
+const validators = {
+  align: ['left','right'],
+  position: ['bottom','top'],
+}
+
+export default {
+  name: 'XNotifications',
+  validators,
+}
 </script>
 
 <script setup lang="ts">
@@ -13,15 +22,6 @@ import XIcon from '../../components/icon/Icon.vue'
 import XSpacer from '../spacer/Spacer'
 
 import theme from './Notifications.theme'
-const validators = {
-  align: ['left', 'right'],
-  position: ['bottom', 'top'],
-}
-
-export default {
-  name: 'XNotifications',
-  validators,
-}
 
 export type NotificationAlign = 'left' | 'right'
 export type NotificationPosition = 'bottom' | 'top'
@@ -89,21 +89,19 @@ provide(props.injectKey, {
 watch(() => props.align, (align) => { internalAlign.value = align })
 watch(() => props.position, (position) => { internalPosition.value = position })
 
-function log (notification: NotificationEvent | string) {
+function log(notification: NotificationEvent | string) {
   const isMessage = typeof notification === 'string'
   const preset = {
     message: isMessage ? notification : undefined,
   }
 
-  add(isMessage
-    ? preset
-    : {
-        ...preset,
-        ...notification,
-      })
+  add(isMessage ? preset : {
+    ...preset,
+    ...notification,
+  })
 }
 
-function info (notification: NotificationEvent | string) {
+function info(notification: NotificationEvent | string) {
   const isMessage = typeof notification === 'string'
   const preset = {
     icon: '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />',
@@ -111,15 +109,13 @@ function info (notification: NotificationEvent | string) {
     message: isMessage ? notification : undefined,
   }
 
-  add(isMessage
-    ? preset
-    : {
-        ...preset,
-        ...notification,
-      })
+  add(isMessage ? preset : {
+    ...preset,
+    ...notification,
+  })
 }
 
-function success (notification: NotificationEvent | string) {
+function success(notification: NotificationEvent | string) {
   const isMessage = typeof notification === 'string'
   const preset = {
     icon: '<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />',
@@ -127,15 +123,13 @@ function success (notification: NotificationEvent | string) {
     message: isMessage ? notification : undefined,
   }
 
-  add(isMessage
-    ? preset
-    : {
-        ...preset,
-        ...notification,
-      })
+  add(isMessage ? preset : {
+    ...preset,
+    ...notification,
+  })
 }
 
-function warn (notification: NotificationEvent | string) {
+function warn(notification: NotificationEvent | string) {
   const isMessage = typeof notification === 'string'
   const preset = {
     icon: '<path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />',
@@ -143,15 +137,13 @@ function warn (notification: NotificationEvent | string) {
     message: isMessage ? notification : undefined,
   }
 
-  add(isMessage
-    ? preset
-    : {
-        ...preset,
-        ...notification,
-      })
+  add(isMessage ? preset : {
+    ...preset,
+    ...notification,
+  })
 }
 
-function error (notification: NotificationEvent | string) {
+function error(notification: NotificationEvent | string) {
   const isMessage = typeof notification === 'string'
   const preset = {
     icon: '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />',
@@ -159,15 +151,13 @@ function error (notification: NotificationEvent | string) {
     message: isMessage ? notification : undefined,
   }
 
-  add(isMessage
-    ? preset
-    : {
-        ...preset,
-        ...notification,
-      })
+  add(isMessage ? preset : {
+    ...preset,
+    ...notification,
+  })
 }
 
-function add (notification: NotificationEvent) {
+function add(notification: NotificationEvent) {
   const mergeProps = {
     id: Date.now(),
     iconColor: props.color,
@@ -203,20 +193,20 @@ function add (notification: NotificationEvent) {
     },
   })
 
-  merged.style = Object.keys(cssVariables).map(key => `${key}: ${cssVariables[key]}`).join(';')
+  merged.style = Object.keys(cssVariables).map((key) => `${key}: ${cssVariables[key]}`).join(';')
 
   notifications.value.push(merged)
 
   listRef.value?.scrollTo({ top: 0, behavior: 'smooth' })
 
-  if (merged.timeout) { setTimer(merged, merged.timeout) }
+  if (merged.timeout) setTimer(merged, merged.timeout)
 }
 
-function remove (event: NotificationEvent) {
-  notifications.value = notifications.value.filter(e => e.id !== event.id)
+function remove(event: NotificationEvent) {
+  notifications.value = notifications.value.filter((e) => e.id !== event.id)
 }
 
-function setTimer (notification: NotificationEvent, timeout: number) {
+function setTimer(notification: NotificationEvent, timeout: number) {
   setTimeout(() => {
     remove(notification)
   }, timeout)
@@ -228,7 +218,7 @@ defineExpose({ log, info, success, warn, warning: warn, error })
 </script>
 
 <template>
-  <slot />
+  <slot></slot>
   <teleport to="body">
     <div
       ref="listRef"
@@ -285,7 +275,7 @@ defineExpose({ log, info, success, warn, warning: warn, error })
             <span v-if="notification.title" class="font-semibold mr-2">{{ notification.title }}</span>
             <span>{{ notification.message }}</span>
           </div>
-          <x-spacer />
+          <x-spacer/>
           <div
             v-if="notification.action"
             class="

@@ -1,4 +1,4 @@
-import { colors } from '@ui/main'
+import { colors } from '@ui'
 
 export default {
   classPrefix: 'x-',

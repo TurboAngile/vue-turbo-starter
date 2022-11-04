@@ -2,21 +2,27 @@ import type { ThemeParams } from '../../composables/theme'
 
 export default {
   classes: {
-    wrapper ({ props, slots, data }: ThemeParams) {
-      /* tw */
+    wrapper({ props, slots, data }: ThemeParams) {
+      /*tw*/
       const classes = ['relative transition duration-150 focus:outline-none inline-flex items-center justify-center font-medium whitespace-nowrap overflow-hidden align-middle active:!shadow-none border']
 
       // radius
-      if (!data.isButtonGroup) { classes.push(props.rounded ? 'rounded-full' : 'rounded-md') }
+      if (!data.isButtonGroup) classes.push(props.rounded ? 'rounded-full' : 'rounded-md')
 
       // shadow
-      if (!props.flat && !props.light && !props.ghost && !props.disabled && !props.loading) { classes.push('shadow-sm') }
+      if (!props.flat && !props.light && !props.ghost && !props.disabled && !props.loading) classes.push('shadow-sm')
 
       // size
-      if (props.size === 'xs') { classes.push(slots.default ? `py-1 text-xs ${props.icon ? 'px-2' : 'px-3'}` : 'leading-none p-1') } else if (props.size === 'sm') { classes.push(slots.default ? `py-2 text-sm ${props.icon ? 'px-3' : 'px-4'}` : 'leading-none p-2') } else if (props.size === 'lg') { classes.push(slots.default ? `py-3 text-lg ${props.icon ? 'px-4' : 'px-6'}` : 'leading-none p-3') } else if (props.size === 'xl') { classes.push(slots.default ? `py-4 text-xl ${props.icon ? 'px-6' : 'px-6'}` : 'leading-none p-4') } else { classes.push(slots.default ? `py-2 ${props.icon ? 'px-4' : 'px-5'}` : 'leading-none p-2') }
+      if (props.size === 'xs') classes.push(slots.default ? `py-1 text-xs ${props.icon ? 'px-2' : 'px-3'}` : 'leading-none p-1')
+      else if (props.size === 'sm') classes.push(slots.default ? `py-2 text-sm ${props.icon ? 'px-3' : 'px-4'}` : 'leading-none p-2')
+      else if (props.size === 'lg') classes.push(slots.default ? `py-3 text-lg ${props.icon ? 'px-4' : 'px-6'}` : 'leading-none p-3')
+      else if (props.size === 'xl') classes.push(slots.default ? `py-4 text-xl ${props.icon ? 'px-6' : 'px-6'}` : 'leading-none p-4')
+      else classes.push(slots.default ? `py-2 ${props.icon ? 'px-4' : 'px-5'}` : 'leading-none p-2')
 
       // cursor
-      if (props.disabled) { classes.push('cursor-not-allowed') } else if (props.loading) { classes.push('cursor-default') } else { classes.push('cursor-pointer') }
+      if (props.disabled) classes.push('cursor-not-allowed')
+      else if (props.loading) classes.push('cursor-default')
+      else classes.push('cursor-pointer')
 
       return classes
     },
@@ -26,7 +32,7 @@ export default {
     iconRight: ({ slots }: ThemeParams) => slots.default ? 'ml-2' : 'm-0.5',
   },
 
-  styles ({ props, colors, css, data }: ThemeParams) {
+  styles({ props, colors, css, data }: ThemeParams) {
     const gray = colors.getPalette('gray')
     const color = props.color ? colors.getPalette(props.color) : gray
     const vars: (object | string)[] = []
@@ -34,7 +40,7 @@ export default {
     const isLight = props.color && props.light
     const isDefault = !props.color && !props.ghost
 
-    if (props.glow) { vars.push(css.get('glow', colors.getColorOpacity(props.color ? color[500] : gray[500], 0.5))) }
+    if (props.glow) vars.push(css.get('glow', colors.getColorOpacity(props.color ? color[500] : gray[500], 0.5)))
 
     if (isDefault) {
       if (props.disabled) {
@@ -68,7 +74,7 @@ export default {
 
     // light
     else if (isLight) {
-      if (!props.outlined || props.disabled) { vars.push(css.get('border', 'transparent')) }
+      if (!props.outlined || props.disabled) vars.push(css.get('border', 'transparent'))
 
       if (props.disabled) {
         vars.push(css.variables({
@@ -101,7 +107,7 @@ export default {
 
     // ghost
     else if (props.ghost) {
-      if (!props.outlined) { vars.push(css.get('border', 'transparent')) }
+      if (!props.outlined) vars.push(css.get('border', 'transparent'))
 
       if (props.color) {
         if (props.disabled) {
@@ -129,32 +135,36 @@ export default {
             }))
           }
         }
-      } else if (props.disabled) {
-        vars.push(css.variables({
-          text: gray[200],
-          dark: {
-            text: gray[700],
-          },
-        }))
       } else {
-        vars.push(css.variables({
-          text: gray[800],
-          dark: {
-            text: 'white',
-          },
-        }))
-        if (!props.loading) {
+        if (props.disabled) {
           vars.push(css.variables({
-            hover: { bg: gray[100] },
-            active: { bg: gray[200] },
+            text: gray[200],
             dark: {
-              hover: { bg: gray[800] },
-              active: { bg: gray[700] },
+              text: gray[700],
             },
           }))
+        } else {
+          vars.push(css.variables({
+            text: gray[800],
+            dark: {
+              text: 'white',
+            },
+          }))
+          if (!props.loading) {
+            vars.push(css.variables({
+              hover: { bg: gray[100] },
+              active: { bg: gray[200] },
+              dark: {
+                hover: { bg: gray[800] },
+                active: { bg: gray[700] },
+              },
+            }))
+          }
         }
       }
-    } else {
+    }
+
+    else {
       // outlined
       if (props.outlined) {
         if (props.disabled) {

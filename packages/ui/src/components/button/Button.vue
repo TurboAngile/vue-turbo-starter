@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XButton' }
 </script>
 
 <script setup lang="ts">
@@ -13,7 +14,6 @@ import XSpinner from '../spinner/Spinner.vue'
 import XIcon from '../icon/Icon.vue'
 
 import theme from './Button.theme'
-export default { name: 'XButton' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -114,7 +114,7 @@ defineExpose({ focus, blur })
       ]"
     />
     <span :class="{ 'invisible': loading }">
-      <slot />
+      <slot></slot>
     </span>
     <x-icon
       v-if="iconRight"

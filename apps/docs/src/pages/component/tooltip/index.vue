@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XTooltip } from '@ui/main'
+import { XTooltip } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 

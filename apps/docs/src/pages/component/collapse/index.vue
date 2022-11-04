@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XCollapse } from '@ui/main'
+import { XCollapse } from '@ui'
 import UsageDemoCode from './usage.vue?raw'
 import UsageDemo from './usage.vue'
 import ExpandedDemoCode from './expanded.vue?raw'

@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import UI from '@ui/main'
+import UI from '@ui'
 import App from './App.vue'
 import router from './router'
 import icons from './icons'

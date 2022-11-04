@@ -1,5 +1,5 @@
 <script>
-import { useNotifications } from '@ui/main'
+import { useNotifications } from '@ui'
 
 export default {
   setup () {

@@ -8,7 +8,7 @@ export default {
 }`,
       installExample: `// main.js
 import { createApp } from 'vue'
-import UI from '@ui/main'
+import UI from '@ui'
 import icons from './icons'
 
 const app = createApp(App)

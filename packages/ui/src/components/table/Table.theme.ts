@@ -5,11 +5,11 @@ export default {
     wrapper: ({ props, data }: ThemeParams) => {
       const c = ['w-full relative']
 
-      if (props.scrollable === 'block') { c.push('overflow-x-scroll sm:overflow-x-auto whitespace-wrap sm:whitespace-normal block sm:table') }
+      if (props.scrollable === 'block') c.push('overflow-x-scroll sm:overflow-x-auto whitespace-wrap sm:whitespace-normal block sm:table')
 
-      if (props.stickyHeader) { c.push('relative') }
+      if (props.stickyHeader) c.push('relative')
 
-      if (props.fixed) { c.push('table-fixed') }
+      if (props.fixed) c.push('table-fixed')
 
       return c
     },

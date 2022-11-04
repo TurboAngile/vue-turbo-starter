@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XMenu' }
 </script>
 
 <script setup lang="ts">
@@ -7,12 +8,11 @@ import { useCommon } from '../../composables/common'
 import { useColors } from '../../composables/colors'
 import { useTheme } from '../../composables/theme'
 
+import XMenuItem from './MenuItem.vue'
 import XCollapse from '../../components/collapse/Collapse.vue'
 import XDivider from '../../components/divider/Divider.vue'
-import XMenuItem from './MenuItem.vue'
 
 import theme from './Menu.theme'
-export default { name: 'XMenu' }
 
 const props = defineProps({
   ...useCommon.props(),
@@ -115,7 +115,7 @@ const { styles, classes, className } = useTheme('menu', theme, props)
         </template>
       </template>
       <template v-else>
-        <x-divider v-if="item.divider" />
+        <x-divider v-if="item.divider"/>
         <x-menu-item
           v-else
           :color="item.color || color"

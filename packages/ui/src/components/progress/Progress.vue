@@ -1,4 +1,5 @@
 <script lang="ts">
+export default { name: 'XProgress' }
 </script>
 
 <script setup lang="ts">
@@ -6,7 +7,6 @@ import { useColors } from '../../composables/colors'
 import { useTheme } from '../../composables/theme'
 
 import theme from './Progress.theme'
-export default { name: 'XProgress' }
 
 const props = defineProps({
   ...useColors.props('primary'),
@@ -48,7 +48,8 @@ const { styles, classes, className } = useTheme('progress', theme, props)
         }
       ]"
       :style="[!gradient ? {width: `${percentage}%`} : '']"
-    />
+    >
+    </div>
     <div
       v-if="gradient"
       class="absolute h-full bg-gray-100 dark:bg-gray-700 right-0 top-0"
@@ -56,6 +57,6 @@ const { styles, classes, className } = useTheme('progress', theme, props)
       :style="{
         width: `${100 - percentage}%`
       }"
-    />
+    ></div>
   </div>
 </template>

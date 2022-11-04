@@ -1,11 +1,11 @@
 <script lang="ts">
+export default { name: 'XSkeleton' }
 </script>
 
 <script setup lang="ts">
 import { useTheme } from '../../composables/theme'
 
 import theme from './Skeleton.theme'
-export default { name: 'XSkeleton' }
 
 const props = defineProps({
   tag: {

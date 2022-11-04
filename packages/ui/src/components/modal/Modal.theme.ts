@@ -9,7 +9,11 @@ export default {
     modal: ({ props }: ThemeParams) => {
       let c = 'relative flex flex-col z-10 bg-white dark:bg-gray-900 rounded-md shadow-lg transform transition-all overflow-hidden max-h-full w-full'
 
-      if (props.size === 'xs') { c += ' sm:max-w-xs' } else if (props.size === 'sm') { c += ' sm:max-w-sm' } else if (props.size === 'lg') { c += ' sm:max-w-xl' } else if (props.size === 'xl') { c += ' sm:max-w-3xl' } else { c += ' sm:max-w-lg' }
+      if (props.size === 'xs') c += ' sm:max-w-xs'
+      else if (props.size === 'sm') c += ' sm:max-w-sm'
+      else if (props.size === 'lg') c += ' sm:max-w-xl'
+      else if (props.size === 'xl') c += ' sm:max-w-3xl'
+      else c += ' sm:max-w-lg'
 
       return c
     },
