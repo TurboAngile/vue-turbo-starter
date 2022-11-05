@@ -41,7 +41,7 @@
     "vite": "3.2.2",
     "vue": "3.2.41",
     "typescript": "4.8.4",
-    "ui": "workspace:*",
+    "@gz/ui": "workspace:*",
     "webpack": "5.74.0"
   },
   "dependencies": {

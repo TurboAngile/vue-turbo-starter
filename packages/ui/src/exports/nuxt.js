@@ -3,8 +3,8 @@ import { fileURLToPath } from 'node:url'
 
 export default defineNuxtModule({
   meta: {
-    name: '@indielayer/ui',
-    configKey: 'indielayer',
+    name: '@gz/ui',
+    configKey: 'gz',
     compatibility: {
       nuxt: '^3.0.0-rc.1',
     },
@@ -16,7 +16,7 @@ export default defineNuxtModule({
     // Create resolver to resolve relative paths
     const { resolve } = createResolver(import.meta.url)
 
-    nuxt.options.runtimeConfig.public.indielayerOptions = options
+    nuxt.options.runtimeConfig.public.gzOptions = options
 
     // plugin install
     addPlugin(resolve('./nuxt.plugin.js'))
