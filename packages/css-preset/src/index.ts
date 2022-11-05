@@ -78,7 +78,7 @@ export const extendUnocssOptions = ({ customPresetWindOptions, ...options }: Cus
 /**
  * Extends unocss/nuxt Plugin Options Config
  */
-export function extendUnocssNuxtOptions (options: CustomNuxtConfig = {}): UnocssNuxtOptions {
+export function extendUnocssNuxtOptions(options: CustomNuxtConfig = {}): UnocssNuxtOptions {
   return {
     preflight: true,
     ...extendUnocssOptions(options),
