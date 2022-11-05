@@ -55,5 +55,5 @@ module.exports = defineConfig({
     // 'no-redeclare': 'off',
     // 'import/order': 'off',
   },
-  ignorePatterns: ['**/*.json', 'dist', 'node_modules', '.turbo', '.nuxt', 'public', '.output', '!.storybook'],
+  ignorePatterns: ['**/*.json', 'dist', 'node_modules', '.turbo', '.nuxt', 'public', '.output', '!.storybook', 'cypress'],
 })
