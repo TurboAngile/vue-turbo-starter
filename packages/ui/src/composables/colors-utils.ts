@@ -42,7 +42,7 @@ export const indielayerColors = ['primary', 'secondary', 'success', 'warning', '
 //   document.body.appendChild(e)
 
 //   indielayerColors.forEach((color) => {
-//     const c: ColorPalette = { ...tailwindColors.gray }
+//     const c: ColorPalette = { ...unoColors.gray }
 
 //     shades.forEach((shade) => {
 //       e.className = `bg-${color}-${shade}`
@@ -110,7 +110,7 @@ export const indielayerColors = ['primary', 'secondary', 'success', 'warning', '
 //   'bg-success-900',
 // ])
 
-export const tailwindColors: ColorLibrary = Object.freeze({
+export const unoColors: ColorLibrary = Object.freeze({
   slate: {
     50: '#f8fafc',
     100: '#f1f5f9',

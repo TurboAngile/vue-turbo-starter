@@ -1,5 +1,5 @@
 import { defineConfig } from 'unocss'
-import { extendUnocssOptions } from 'css-preset'
+import { extendUnocssOptions } from '@gz/css-preset'
 
 export default defineConfig({
   ...extendUnocssOptions(),

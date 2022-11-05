@@ -1,5 +1,5 @@
 {
-  "name": "monorepo-vue-starter",
+  "name": "@gz/monorepo",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/prompts": "2.4.1",
     "@types/semver": "7.3.13",
-    "eslint-config-custom": "workspace:*",
+    "@gz/eslint-config-custom": "workspace:*",
     "conventional-changelog-cli": "2.2.2",
     "execa": "6.1.0",
     "picocolors": "1.0.0",

@@ -1,6 +1,6 @@
 {
-  "name": "eslint-config-base",
-  "version": "3.1.1",
+  "name": "@gz/eslint-config-base",
+  "version": "0.0.0",
   "description": "Laughing ESLint Config",
   "homepage": "https://laughing.com/",
   "keywords": [
@@ -13,14 +13,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/laughing/eslint-config.git",
+    "url": "https://github.com/gxkai/gz.git",
     "directory": "packages/eslint-config"
   },
   "bugs": {
-    "url": "https://github.com/laughing/eslint-config/issues"
+    "url": "https://github.com/gxkai/gz/issues"
   },
   "license": "MIT",
-  "author": "João Teixeira <joao@laughing.com>",
+  "author": "gxkai <ksgxk@icloud.com>",
   "files": [
     "index.js"
   ],

@@ -1,4 +1,4 @@
-export { tailwindColors as colors } from './composables/colors-utils'
+export { unoColors as colors } from './composables/colors-utils'
 export { default as version } from './version'
 export * from './components'
 export * from './composables'

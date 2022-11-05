@@ -15,7 +15,7 @@
       "cache": false
     },
     "dev": {
-      "dependsOn": ["css-preset#stub"],
+      "dependsOn": ["@gz/css-preset#stub"],
       "cache": false
     },
     "start": {

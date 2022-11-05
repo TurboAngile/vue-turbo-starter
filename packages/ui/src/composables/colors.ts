@@ -1,7 +1,7 @@
 import * as R from 'ramda'
 import { computed, inject, unref } from 'vue'
 import { injectThemeKey } from './keys'
-import { isValidColor, tailwindColors, colorShade, setOpacity } from './colors-utils'
+import { isValidColor, unoColors, colorShade, setOpacity } from './colors-utils'
 
 export type Tone = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
 
@@ -32,18 +32,18 @@ export interface ColorComposition {
 const colorCache: ColorLibrary = {}
 
 const defaultColors = {
-  primary: tailwindColors.sky,
-  secondary: tailwindColors.slate,
-  success: tailwindColors.green,
-  warning: tailwindColors.yellow,
-  error: tailwindColors.red,
+  primary: unoColors.sky,
+  secondary: unoColors.slate,
+  success: unoColors.green,
+  warning: unoColors.yellow,
+  error: unoColors.red,
 }
 
 export const useColors = (): ColorComposition => {
   const globalTheme = inject(injectThemeKey,  {})
   const customColors = computed(() => R.mergeRight(defaultColors, unref(globalTheme).colors))
 
-  const getTailwindColor = (color: string) => tailwindColors[color]
+  const getTailwindColor = (color: string) => unoColors[color]
 
   const getColorOpacity = (color: string, opacity: number) => setOpacity(color, opacity)
 

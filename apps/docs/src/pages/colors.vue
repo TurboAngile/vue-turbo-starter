@@ -89,36 +89,10 @@ app.use(UI, {
 })`"
       />
 
-      <p class="my-4">Allow you to use the Tailwind classes like <b>text-primary-500</b>, <b>bg-primary-500</b>, etc:</p>
-
-      <div>
-        <code-snippet
-          lang="js"
-          :code="`// tailwind.config.js
-//...
-const colors = require('tailwindcss/colors')
-
-module.exports = {
-  //...
-  theme: {
-    extend: {
-      colors: {
-        primary: colors.emerald,
-        secondary: colors.slate,
-        success: colors.green,
-        warning: colors.yellow,
-        error: colors.red,
-      },
-    },
-  },
-}`"
-        />
-      </div>
-
       <x-divider class="mt-4 mb-8"/>
 
-      <h2 class="text-2xl mb-2">Tailwind Colors</h2>
-      <p class="mb-8 text-gray-500 dark:text-gray-400">Default tailwind color palettes.</p>
+      <h2 class="text-2xl mb-2">Unocss Colors</h2>
+      <p class="mb-8 text-gray-500 dark:text-gray-400">Default unocss color palettes.</p>
 
       <div class="grid gap-6 grid-cols-1 md:grid-cols-2 text-xs">
         <div v-for="(pal, key) in TailwindColors" :key="key">

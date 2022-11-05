@@ -1,6 +1,6 @@
 module.exports = {
   extends: [
-    'base',
+    '@gz/eslint-config-base',
     'plugin:vue/vue3-recommended',
   ],
   parser: 'vue-eslint-parser',
