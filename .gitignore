@@ -43,6 +43,3 @@ storybook-static
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
 /.idea/vue-turbo-starter.iml
-
-# pnpm
-.pnpm-lock.yaml
