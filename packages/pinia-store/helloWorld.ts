@@ -6,7 +6,7 @@ export const helloWorld = {
     message: 'Testmessage',
   }),
   actions: {
-    setMessage (payload) {
+    setMessage(payload) {
       this.message = payload
     },
   },

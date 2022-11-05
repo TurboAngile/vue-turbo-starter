@@ -13,6 +13,7 @@ describe('User Store with describe', () => {
 
   it('First Name', () => {
     const user = useUser()
+
     expect(user.firstName).toBe('Lebron')
     user.setFirstName('Testo')
     expect(user.firstName).toBe('Testo')
@@ -20,6 +21,7 @@ describe('User Store with describe', () => {
 
   it('Last Name', () => {
     const user = useUser()
+
     expect(user.lastName).toBe('James')
     user.setLastName('Testo')
     expect(user.lastName).toBe('Testo')
