@@ -5,8 +5,6 @@ import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import DefineOptions from 'unplugin-vue-define-options/vite'
-import postcssImport from 'postcss-import'
-import postcssNesting from 'postcss-nesting'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,14 +17,22 @@ export default defineConfig({
     },
   },
   css: {
-    // postcss: {
-    //   plugins: [
-    //     postcssImport,
-    //     postcssNesting,
-    //   ],
-    // },
-  },
-  server: {
-    port: 3001,
+    preprocessorOptions: {
+      scss: {
+        charset: false,
+        // additionalData: '@use "@/assets/styles/global-scss-var.scss" as *;',
+      },
+    },
+    // vite 中已集成了 postcss
+    // https://vitejs.cn/config/#css-postcss
+    postcss: {
+      plugins: [
+        require('autoprefixer')({
+          overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8', '> 1%'],
+          grid: false,
+        }),
+        require('postcss-nested'),
+      ],
+    },
   },
 })

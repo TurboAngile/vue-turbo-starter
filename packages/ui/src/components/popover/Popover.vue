@@ -1,7 +1,7 @@
 <script lang="ts">
 const validators = {
-  align: ['bottom', 'center', 'left', 'right', 'top'],
-  position: ['bottom', 'left', 'right', 'top'],
+  align: ['bottom','center','left','right','top'],
+  position: ['bottom','left','right','top'],
 }
 
 export default {
@@ -47,10 +47,10 @@ const elRef = ref<HTMLElement | null>(null)
 const contentRef = ref<HTMLElement | null>(null)
 const isOpen = ref(false)
 
-let stopClickOutside: undefined | (()=> void)
+let stopClickOutside: undefined | (()=> void) = undefined
 
 watch(isOpen, (newValue) => {
-  if (props.hover) { return }
+  if (props.hover) return
 
   if (newValue) {
     checkVisibility()
@@ -82,38 +82,38 @@ const contentClasses = computed(() => {
   let position = props.position
 
   if (isOutTop.value) {
-    if (position === 'top') { position = 'bottom' }
-    else if ((position === 'left' || position === 'right')) { align = 'top' }
+    if (position === 'top') position = 'bottom'
+    else if ((position === 'left' || position === 'right')) align = 'top'
   }
 
   if (isOutBottom.value) {
-    if (position === 'bottom') { position = 'top' }
-    else if ((position === 'left' || position === 'right')) { align = 'bottom' }
+    if (position === 'bottom') position = 'top'
+    else if ((position === 'left' || position === 'right')) align = 'bottom'
   }
 
   if (isOutLeft.value) {
-    if (position === 'left') { position = 'right' }
-    else if ((position === 'top' || position === 'bottom')) { align = 'left' }
+    if (position === 'left') position = 'right'
+    else if ((position === 'top' || position === 'bottom')) align = 'left'
   }
 
   if (isOutRight.value) {
-    if (position === 'right') { position = 'left' }
-    else if ((position === 'top' || position === 'bottom')) { align = 'right' }
+    if (position === 'right') position = 'left'
+    else if ((position === 'top' || position === 'bottom')) align = 'right'
   }
 
-  if (position === 'top') { c.push(`bottom-full ${$style.popoverTop}`) }
-  if (position === 'bottom') { c.push(`top-full bottom-0 ${$style.popoverBottom}`) }
-  if (position === 'right') { c.push(`left-full ${$style.popoverRight}`) }
-  if (position === 'left') { c.push(`right-full left-auto ${$style.popoverLeft}`) }
+  if (position === 'top') c.push(`bottom-full ${$style.popoverTop}`)
+  if (position === 'bottom') c.push(`top-full bottom-0 ${$style.popoverBottom}`)
+  if (position === 'right') c.push(`left-full ${$style.popoverRight}`)
+  if (position === 'left') c.push(`right-full left-auto ${$style.popoverLeft}`)
 
-  if (align === 'left' && ['bottom', 'top'].includes(position)) { c.push('left-0 right-auto') }
-  if (align === 'center' && ['bottom', 'top'].includes(position)) { c.push('left-1/2 right-auto -translate-x-1/2') }
-  if (align === 'right' && ['bottom', 'top'].includes(position)) { c.push('right-0 left-auto') }
-  if (align === 'top' && ['left', 'right'].includes(position)) { c.push('top-0 bottom-auto') }
-  if (align === 'center' && ['left', 'right'].includes(position)) { c.push('-translate-y-1/2 top-1/2 bottom-auto') }
-  if (align === 'bottom' && ['left', 'right'].includes(position)) { c.push('bottom-0') }
+  if (align === 'left' && ['bottom', 'top'].includes(position)) c.push('left-0 right-auto')
+  if (align === 'center' && ['bottom', 'top'].includes(position)) c.push('left-1/2 right-auto -translate-x-1/2')
+  if (align === 'right' && ['bottom', 'top'].includes(position)) c.push('right-0 left-auto')
+  if (align === 'top' && ['left', 'right'].includes(position)) c.push('top-0 bottom-auto')
+  if (align === 'center' && ['left', 'right'].includes(position)) c.push('-translate-y-1/2 top-1/2 bottom-auto')
+  if (align === 'bottom' && ['left', 'right'].includes(position)) c.push('bottom-0')
 
-  if (props.block) { c.push('min-w-full') }
+  if (props.block) c.push('min-w-full')
 
   return c
 })
@@ -123,15 +123,15 @@ if (props.hover) {
   useEventListener(elRef, 'mouseleave', resetOutbounds)
 }
 
-function resetOutbounds () {
+function resetOutbounds() {
   isOutLeft.value = false
   isOutRight.value = false
   isOutTop.value = false
   isOutBottom.value = false
 }
 
-function checkVisibility () {
-  if (!contentRef.value) { return }
+function checkVisibility() {
+  if (!contentRef.value) return
   const clientRect = contentRef.value.getBoundingClientRect()
 
   isOutLeft.value = clientRect.left < 0
@@ -140,20 +140,20 @@ function checkVisibility () {
   isOutBottom.value = clientRect.bottom > (window.innerHeight || document.documentElement.clientHeight)
 }
 
-function close () {
-  if (props.disabled) { return }
+function close() {
+  if (props.disabled) return
   isOpen.value = false
   emit('close')
 }
 
-function open () {
-  if (props.disabled) { return }
+function open() {
+  if (props.disabled) return
   isOpen.value = true
   emit('open')
 }
 
-function toggle () {
-  if (props.disabled) { return }
+function toggle() {
+  if (props.disabled) return
   isOpen.value = !isOpen.value
   emit('toggle', isOpen.value)
 }
@@ -178,7 +178,7 @@ defineExpose({ open, close, toggle, isOpen })
     ]"
   >
     <div class="flex" @click="!hover ? toggle() : null">
-      <slot />
+      <slot></slot>
     </div>
 
     <div
@@ -191,7 +191,7 @@ defineExpose({ open, close, toggle, isOpen })
       ]"
       @click="dismissOnClick ? close() : null"
     >
-      <slot name="content" />
+      <slot name="content"></slot>
     </div>
   </div>
 </template>

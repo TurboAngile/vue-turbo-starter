@@ -12,7 +12,7 @@ const other = ref('I have an icon')
       type="password"
       show-password-toggle
     />
-    <x-input v-model="other" label="Input with icon" icon-left="smile" />
+    <x-input v-model="other" label="Input with icon" icon-left="smile"/>
     <x-input v-model="other" label="Icon on the right" icon-right="smile" />
   </div>
 </template>

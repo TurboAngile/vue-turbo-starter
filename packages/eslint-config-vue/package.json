@@ -1,0 +1,42 @@
+{
+  "name": "eslint-config-vue",
+  "version": "3.1.1",
+  "description": "Laughing ESLint Config for Vue 3",
+  "homepage": "https://laughing.com/",
+  "keywords": [
+    "laughing",
+    "eslint",
+    "vue",
+    "vue3",
+    "nuxt",
+    "nuxt3",
+    "styleguide",
+    "eslintconfig"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laughing/eslint-config.git",
+    "directory": "packages/eslint-config-vue"
+  },
+  "bugs": {
+    "url": "https://github.com/laughing/eslint-config/issues"
+  },
+  "license": "MIT",
+  "author": "João Teixeira <joao@laughing.com>",
+  "files": [
+    "index.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "eslint-config-base": "workspace:*",
+    "eslint-plugin-vue": "^8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0"
+  },
+  "peerDependencies": {
+    "eslint": "^8.6.0"
+  }
+}

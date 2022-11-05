@@ -40,7 +40,7 @@ const defaultColors = {
 }
 
 export const useColors = (): ColorComposition => {
-  const globalTheme = inject(injectThemeKey, {})
+  const globalTheme = inject(injectThemeKey,  {})
   const customColors = computed(() => R.mergeRight(defaultColors, unref(globalTheme).colors))
 
   const getTailwindColor = (color: string) => tailwindColors[color]
@@ -48,13 +48,13 @@ export const useColors = (): ColorComposition => {
   const getColorOpacity = (color: string, opacity: number) => setOpacity(color, opacity)
 
   const getPalette = (color: string): ColorPalette => {
-    if (!color) { return getTailwindColor('gray') }
+    if (!color) return getTailwindColor('gray')
 
     const twColor = getTailwindColor(color)
 
-    if (twColor) { return twColor }
-    if (colorCache[color]) { return colorCache[color] }
-    if (customColors.value[color]) { return customColors.value[color] }
+    if (twColor) return twColor
+    if (colorCache[color]) return colorCache[color]
+    if (customColors.value[color]) return customColors.value[color]
 
     if (!isValidColor(color)) {
       console.warn(`Invalid color: ${color}`)

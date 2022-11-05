@@ -2,10 +2,11 @@ import { resolve } from 'path'
 import { defineConfig } from 'vitest/config'
 // import config from './vite.config'
 import vue from '@vitejs/plugin-vue'
-
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import Unocss from 'unocss/vite'
 export default defineConfig({
   // ...config,
-  plugins: [vue()],
+  plugins: [vue(), vueJsx(), Unocss()],
   resolve: {
     alias: {
       '@ui': resolve(__dirname, '../ui/src'),
@@ -18,5 +19,8 @@ export default defineConfig({
       '../pinia-store/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
       '../../apps/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
     ],
+    transformMode: {
+      web: [/\.[jt]sx$/],
+    },
   },
 })

@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import type { ColorLibrary } from './composables/colors'
 import { injectColorsKey, injectIconsKey, injectThemeKey } from './composables/keys'
 
-export type LaughingUIOptions = {
+export type IndielayerUIOptions = {
   prefix?: string,
   components?: any,
   colors?: ColorLibrary,
@@ -10,26 +10,25 @@ export type LaughingUIOptions = {
   theme?: any
 }
 
-const defaultOptions: LaughingUIOptions = {
+const defaultOptions: IndielayerUIOptions = {
   prefix: 'X',
 }
 
-const create = (createOptions: LaughingUIOptions = {}) => {
-  const install = (app: App, installOptions: LaughingUIOptions = {}) => {
+const create = (createOptions: IndielayerUIOptions = {}) => {
+  const install = (app: App, installOptions: IndielayerUIOptions = {}) => {
     const options = {
       ...defaultOptions,
       ...createOptions,
       ...installOptions,
     }
 
-    if (options.components) {
+    if (options.components)
       options.components.forEach((component: any) => {
-      // TODO: remove me
+        // TODO: remove me
         const name = component.name.startsWith('X') ? component.name.slice(1) : component.name
 
         app.component(`${options.prefix}${name}`, component)
       })
-    }
 
     app.provide(injectColorsKey, options.colors)
     app.provide(injectIconsKey, options.icons || {})

@@ -16,7 +16,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
   ],
-  viteFinal (config) {
+  viteFinal(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@ui': resolve(__dirname, '../../../packages/ui/src'),

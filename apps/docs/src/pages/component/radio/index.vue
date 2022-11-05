@@ -32,7 +32,7 @@ const next = 'select'
 
 <template>
   <document-page
-    github="https://github.com/laughing/ui/blob/main/packages/docs/src/pages/component/radio"
+    github="https://github.com/indielayer/ui/blob/main/packages/docs/src/pages/component/radio"
     :title="title"
     :description="description"
     :components="components"

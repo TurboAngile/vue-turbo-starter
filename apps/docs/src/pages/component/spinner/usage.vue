@@ -1,3 +1,3 @@
 <template>
-  <x-spinner />
+  <x-spinner/>
 </template>

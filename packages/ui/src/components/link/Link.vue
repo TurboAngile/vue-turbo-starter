@@ -43,11 +43,11 @@ const { styles, classes, className } = useTheme('link', theme, props)
       v-if="external"
       class="inline-flex items-center"
     >
-      <slot />
+      <slot></slot>
       <x-icon :icon="externalIcon" />
     </span>
     <template v-else>
-      <slot />
+      <slot></slot>
     </template>
   </component>
 </template>

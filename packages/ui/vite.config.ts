@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { fileURLToPath, URL } from 'url'
 import * as path from 'path'
 import { defineConfig } from 'vite'

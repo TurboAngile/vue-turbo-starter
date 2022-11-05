@@ -1,7 +1,5 @@
 <template>
-  <div class="text-xl">
-    Examples
-  </div>
+  <div class="text-xl">Examples</div>
   <ul>
     <li>scroll with shadow</li>
     <li>horizontal</li>

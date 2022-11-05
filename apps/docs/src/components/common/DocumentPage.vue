@@ -35,7 +35,7 @@ const headersSimple = [
 ]
 
 const componentsProperties = computed(() => {
-  if (!props.components) { return null }
+  if (!props.components) return null
   const components = Array.isArray(props.components) ? props.components : [props.components]
   const properties = {}
 
@@ -44,7 +44,7 @@ const componentsProperties = computed(() => {
     let allValidators = {}
     let allProps = {}
 
-    if (comp.mixins) { comp.mixins.forEach((m) => {
+    if (comp.mixins) comp.mixins.forEach((m) => {
       allValidators = {
         ...allValidators,
         ...m.validators,
@@ -53,7 +53,7 @@ const componentsProperties = computed(() => {
         ...allProps,
         ...m.props,
       }
-    }) }
+    })
 
     allValidators = {
       ...allValidators,
@@ -72,10 +72,10 @@ const componentsProperties = computed(() => {
         let propType = []
 
         if (Array.isArray(propFrom)) {
-          propType = propFrom.map(type => type.name)
+          propType = propFrom.map((type) => type.name)
         } else {
           propType = [propFrom.name]
-          if (propFrom.name === 'Boolean' && !propDefault) { propDefault = false }
+          if (propFrom.name === 'Boolean' && !propDefault) propDefault = false
         }
 
         return {
@@ -91,12 +91,12 @@ const componentsProperties = computed(() => {
     }
 
     ['methods', 'slots'].forEach((property) => {
-      if (comp[property]) { properties[componentName][property] = Object.keys(comp[property]).map(k => ({ name: k })) }
+      if (comp[property]) properties[componentName][property] = Object.keys(comp[property]).map((k) => ({ name: k }))
     })
 
     // vue 3 events
-    if (comp.emits) { properties[componentName].emits = comp.emits.map(k => ({ name: k })) }
-    if (comp.expose) { properties[componentName].methods = comp.expose.map(k => ({ name: k })) }
+    if (comp['emits']) properties[componentName]['emits'] = comp['emits'].map((k) => ({ name: k }))
+    if (comp['expose']) properties[componentName]['methods'] = comp['expose'].map((k) => ({ name: k }))
   })
 
   return properties
@@ -152,11 +152,9 @@ onUnmounted(() => {
               </template>
             </x-tooltip>
           </div>
-          <div class="text-lg my-2 text-gray-500">
-            {{ description }}
-          </div>
+          <div class="text-lg my-2 text-gray-500">{{ description }}</div>
           <div class="mt-4">
-            <slot />
+            <slot></slot>
 
             <div v-for="demo in demos" :key="demo.name">
               <code-preview
@@ -170,9 +168,7 @@ onUnmounted(() => {
             </div>
 
             <div v-if="componentsProperties">
-              <h2 id="api" class="!text-2xl !mt-20">
-                <a class="anchor" href="#api">#</a>API
-              </h2>
+              <h2 id="api" class="!text-2xl !mt-20"><a class="anchor" href="#api">#</a>API</h2>
 
               <section
                 v-for="(component, componentName) in componentsProperties"
@@ -196,14 +192,10 @@ onUnmounted(() => {
                         :items="properties"
                       >
                         <template #item-name="{ item }">
-                          <div class="text-primary-500">
-                            {{ item.name }}
-                          </div>
+                          <div class="text-primary-500">{{ item.name }}</div>
                         </template>
                         <template #item-type="{ item }">
-                          <div v-for="t in item.type" :key="t">
-                            {{ t }}
-                          </div>
+                          <div v-for="t in item.type" :key="t">{{ t }}</div>
                         </template>
                         <template #item-required="{ item }">
                           <div>{{ item.required ? 'true' : '' }}</div>
@@ -217,6 +209,7 @@ onUnmounted(() => {
                     </div>
                   </div>
                 </div>
+
               </section>
             </div>
           </div>
@@ -228,28 +221,22 @@ onUnmounted(() => {
               outlined
               class="capitalize"
               icon="arrow-left"
-            >
-              {{ back }}
-            </x-button>
-            <x-spacer />
+            >{{ back }}</x-button>
+            <x-spacer/>
             <x-button
               v-if="next"
               :to="next"
               outlined
               class="capitalize"
               icon-right="arrow-right"
-            >
-              {{ next }}
-            </x-button>
+            >{{ next }}</x-button>
           </div>
         </div>
 
         <div v-if="anchors.length > 0" class="hidden xl:text-sm xl:block flex-none w-64 pl-8 mr-8">
           <div class="flex flex-col justify-between overflow-y-auto sticky max-h-(screen-18) pt-10 pb-6 top-0">
             <div class="mb-8">
-              <h5 class="text-gray-900 dark:text-gray-100 uppercase tracking-wide font-semibold mb-3 text-sm lg:text-xs">
-                On this page
-              </h5>
+              <h5 class="text-gray-900 dark:text-gray-100 uppercase tracking-wide font-semibold mb-3 text-sm lg:text-xs">On this page</h5>
               <ul class="overflow-x-hidden text-gray-500 dark:text-gray-400 font-medium">
                 <li v-for="(anchor, index) in anchors" :key="index">
                   <a

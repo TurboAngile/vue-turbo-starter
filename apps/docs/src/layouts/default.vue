@@ -17,9 +17,7 @@ const drawer = ref(false)
       size="sm"
       ghost
       @click="drawer = true"
-    >
-      Menu
-    </x-button>
+    >Menu</x-button>
   </div>
   <div class="flex-1 flex overflow-hidden">
     <XDrawer v-model="drawer" breakpoint="lg" width="260" class="border-r">

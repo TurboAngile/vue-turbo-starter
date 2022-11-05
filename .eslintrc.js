@@ -11,19 +11,19 @@ module.exports = defineConfig({
     // Welche Regeln brauchen wir?
 
     // Package Overrides
-    {
-      files: ['./packages/**/*.{js,ts,vue}'],
-      rules: {
-        'vue/multi-word-component-names': 'off',
-      },
-    },
-
-    // Nuxt Overrides
-    {
-      files: [`${nuxtPath}/components/**/*.{js,ts,vue}`, `${nuxtPath}/pages/**/*.{js,ts,vue}`, `${nuxtPath}/layouts/**/*.{js,ts,vue}`],
-      rules: {
-        'vue/multi-word-component-names': 'off',
-      },
-    },
+    // {
+    //   files: ['./packages/**/*.{js,ts,vue}'],
+    //   rules: {
+    //     'vue/multi-word-component-names': 'off',
+    //   },
+    // },
+    //
+    // // Nuxt Overrides
+    // {
+    //   files: [`${nuxtPath}/components/**/*.{js,ts,vue}`, `${nuxtPath}/pages/**/*.{js,ts,vue}`, `${nuxtPath}/layouts/**/*.{js,ts,vue}`],
+    //   rules: {
+    //     'vue/multi-word-component-names': 'off',
+    //   },
+    // },
   ],
 })

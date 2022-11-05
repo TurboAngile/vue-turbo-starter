@@ -12,10 +12,10 @@ import CodePreview from './components/common/CodePreview.vue'
 import DocumentPage from './components/common/DocumentPage.vue'
 
 // css
-// import './assets/css/tailwind.css'
+import './assets/css/tailwind.css'
 import theme from './theme'
-import '@unocss/reset/tailwind.css'
 import 'uno.css'
+import '@unocss/reset/tailwind.css'
 const app = createApp(App)
 
 app.use(UI, {

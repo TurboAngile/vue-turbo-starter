@@ -45,6 +45,7 @@ const { styles, classes, className } = useTheme('alert', theme, props)
       classes.wrapper,
     ]"
   >
+
     <slot name="icon">
       <x-icon
         v-if="type"

@@ -3,16 +3,14 @@ import { useHelloWorld } from '@/store/helloWorld'
 
 const store = useHelloWorld()
 const { message } = store
-console.log(message)
 </script>
 
 <template>
   <div class="flex place-items-center h-screen w-full justify-center">
     <div>
       <Button prefix="test" type="primary">
-        Button1
+        Button
       </Button>
-      <Tooltip>111<template #tooltip>111</template></Tooltip>
     </div>
     <!-- <NuxtWelcome /> -->
   </div>

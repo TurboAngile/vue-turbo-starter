@@ -1,10 +1,11 @@
 import { computed, inject, unref, useSlots, type StyleValue } from 'vue'
-import * as R from 'ramda'
-import type { Slots } from 'vue'
-import { smartUnref } from '../common/utils'
 import { injectThemeKey } from './keys'
 import { useColors, type ColorComposition } from './colors'
 import { useCSS, type CSSComposition } from './css'
+import * as R from 'ramda'
+import { smartUnref } from '../common/utils'
+
+import type { Slots } from 'vue'
 
 export type ThemeParams = {
   props: any
@@ -19,7 +20,7 @@ export const useTheme = (namespace: string, defaultTheme: any = {}, props: any, 
   const userTheme = inject(injectThemeKey, false)
 
   const rawClasses = computed(() => {
-    if (unref(userTheme)?.[namespace]) { return R.mergeRight(defaultTheme.classes, unref(userTheme)[namespace].classes || {}) }
+    if (unref(userTheme)?.[namespace]) return R.mergeRight(defaultTheme.classes, unref(userTheme)[namespace].classes || {})
 
     return defaultTheme.classes
   })
@@ -70,15 +71,15 @@ export const useTheme = (namespace: string, defaultTheme: any = {}, props: any, 
   }
 }
 
-function getClasses (xs: any, params: ThemeParams): any {
-  return R.map(x => R.is(Function, x)
+function getClasses(xs: any, params: ThemeParams): any {
+  return R.map((x) => R.is(Function, x)
     ? x(params)
     : R.is(Object, x) || R.is(Array, x)
       ? getClasses(x, params)
       : x, xs)
 }
 
-function getStyles (styles: any, params: ThemeParams) {
+function getStyles(styles: any, params: ThemeParams) {
   return R.is(Function, styles)
     ? styles(params) || {}
     : R.is(Object, styles)

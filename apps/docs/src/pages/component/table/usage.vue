@@ -1,15 +1,47 @@
+<template>
+  <x-table
+    v-model:sort="sort"
+    :headers="headers"
+    :items="itemsSorted"
+    @click-row="notifications.log('open')"
+  >
+    <template #item-published="{ item }">
+      {{ formatDate(item.published) }}
+    </template>
+    <template #item-status="{ item }">
+      <x-tag size="sm" color="primary" rounded>{{ item.status }}</x-tag>
+    </template>
+  </x-table>
+  <x-table
+    v-model:sort="sort"
+    class="my-10"
+    dense
+    striped
+    :headers="headers"
+    :items="itemsSorted"
+    @click-row="notifications.log('open')"
+  >
+    <template #item-published="{ item }">
+      {{ formatDate(item.published) }}
+    </template>
+    <template #item-status="{ item }">
+      <x-tag size="sm" color="pink" rounded>{{ item.status }}</x-tag>
+    </template>
+  </x-table>
+</template>
+
 <script>
 import { useNotifications } from '@ui'
 
 export default {
-  setup () {
+  setup() {
     const notifications = useNotifications('notifica')
 
     return {
       notifications,
     }
   },
-  data () {
+  data() {
     return {
       headers: [
         { text: '#', value: 'id', sortable: true, align: 'center' },
@@ -42,15 +74,15 @@ export default {
   },
 
   computed: {
-    itemsSorted () {
+    itemsSorted() {
       const items = this.items.slice(0)
 
       return items.sort((a, b) => {
         for (const sort of this.sort) {
           const [key, asc] = sort.split(',')
 
-          if (a[key] > b[key]) { return asc === '-1' ? -1 : 1 }
-          if (a[key] < b[key]) { return asc === '-1' ? 1 : -1 }
+          if (a[key] > b[key]) return asc === '-1' ? -1 : 1
+          if (a[key] < b[key]) return asc === '-1' ? 1 : -1
         }
 
         return 0
@@ -59,45 +91,9 @@ export default {
   },
 
   methods: {
-    formatDate (val) {
+    formatDate(val) {
       return (new Date(val)).toISOString()
     },
   },
 }
 </script>
-
-<template>
-  <x-table
-    v-model:sort="sort"
-    :headers="headers"
-    :items="itemsSorted"
-    @click-row="notifications.log('open')"
-  >
-    <template #item-published="{ item }">
-      {{ formatDate(item.published) }}
-    </template>
-    <template #item-status="{ item }">
-      <x-tag size="sm" color="primary" rounded>
-        {{ item.status }}
-      </x-tag>
-    </template>
-  </x-table>
-  <x-table
-    v-model:sort="sort"
-    class="my-10"
-    dense
-    striped
-    :headers="headers"
-    :items="itemsSorted"
-    @click-row="notifications.log('open')"
-  >
-    <template #item-published="{ item }">
-      {{ formatDate(item.published) }}
-    </template>
-    <template #item-status="{ item }">
-      <x-tag size="sm" color="pink" rounded>
-        {{ item.status }}
-      </x-tag>
-    </template>
-  </x-table>
-</template>

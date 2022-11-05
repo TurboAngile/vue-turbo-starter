@@ -6,10 +6,10 @@ const isRGBA = (rgba: string) => /^^rgba[(](?:\s*0*(?:\d\d?(?:\.\d+)?(?:\s*%)?|\
 const parseRGB = (rgb: string) => rgb.match(/(?<=\().+?(?=\))/g)?.[0].split(',')
 const hexToRGB = (hex: string) => hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => '#' + r + r + g + g + b + b)
   .substring(1).match(/.{2}/g)
-  ?.map(x => parseInt(x, 16))
+  ?.map((x) => parseInt(x, 16))
 
 export const setOpacity = (color: string, opacity: number) => {
-  const [r, g, b] = (isHex(color) ? hexToRGB(color) : parseRGB(color)) ?? [0, 0, 0]
+  const [r, g, b] = (isHex(color) ? hexToRGB(color) : parseRGB(color)) ?? [0,0,0]
 
   return 'rgba' + '(' + r + ',' + g + ',' + b + ',' + opacity + ')'
 }
@@ -22,7 +22,7 @@ export const colorShade = (color: string, percentage: number) => {
   const shade = lighten ? 0 : percentage * 255 ** 2
   const calcPrimary = (p: string | number) => Math.round((base * Math.floor(Number(p)) ** 2 + shade) ** 0.5)
 
-  const [r, g, b, a] = (isHex(color) ? hexToRGB(color) : parseRGB(color)) ?? [0, 0, 0]
+  const [r, g, b, a] = (isHex(color) ? hexToRGB(color) : parseRGB(color)) ?? [0,0,0]
   const red = calcPrimary(r)
   const green = calcPrimary(g)
   const blue = calcPrimary(b)
@@ -31,7 +31,7 @@ export const colorShade = (color: string, percentage: number) => {
 }
 
 export const shades: Tone[] = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900']
-export const laughingColors = ['primary', 'secondary', 'success', 'warning', 'error']
+export const indielayerColors = ['primary', 'secondary', 'success', 'warning', 'error']
 
 // calculate custom colors
 // export function calculateColors(): ColorLibrary {
@@ -41,7 +41,7 @@ export const laughingColors = ['primary', 'secondary', 'success', 'warning', 'er
 
 //   document.body.appendChild(e)
 
-//   laughingColors.forEach((color) => {
+//   indielayerColors.forEach((color) => {
 //     const c: ColorPalette = { ...tailwindColors.gray }
 
 //     shades.forEach((shade) => {

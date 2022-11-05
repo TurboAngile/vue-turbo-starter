@@ -1,9 +1,7 @@
 <template>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
     <x-badge color="pink" outlined size="lg" animated>
-      <x-button color="pink" outlined light size="xl">
-        Notifications
-      </x-button>
+      <x-button color="pink" outlined light size="xl">Notifications</x-button>
     </x-badge>
 
     <x-badge
@@ -17,9 +15,7 @@
     </x-badge>
 
     <x-badge color="indigo" position="top" align="right">
-      <x-button color="indigo" outlined light>
-        Updates
-      </x-button>
+      <x-button color="indigo" outlined light>Updates</x-button>
       <template #content>
         22323
       </template>

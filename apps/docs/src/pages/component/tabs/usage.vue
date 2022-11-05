@@ -1,9 +1,3 @@
-<script>
-export default {
-  data () { return { tab: 'a' } },
-}
-</script>
-
 <template>
   <x-tab-group v-model="tab" class="pb-10" variant="line">
     <x-tab value="a" label="Tab A" icon="smile">
@@ -128,3 +122,9 @@ export default {
     </x-tab>
   </x-tab-group>
 </template>
+
+<script>
+export default {
+  data() { return { tab: 'a' } },
+}
+</script>
